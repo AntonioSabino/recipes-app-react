@@ -4,7 +4,7 @@ import Header from './Header';
 function Foods() {
   return (
     <div>
-      <Header />
+      <Header hasProfileIcon hasSearchIcon name="Foods" />
     </div>
   );
 }
