@@ -5,6 +5,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
 
+  const handleClick = () => {
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+  };
+
   const validadeButton = () => {
     /**
       * Validação com Regex consultada em
@@ -56,6 +61,7 @@ const Login = () => {
         type="button"
         data-testid="login-submit-btn"
         disabled={ disabled }
+        onClick={ handleClick }
       >
         Entrar
       </button>
