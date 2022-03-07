@@ -12,18 +12,16 @@ const Login = () => {
     window.location.href = '/foods';
   };
 
-  const validadeButton = () => {
+  const validateButton = () => {
     /**
       * Validação com Regex consultada em
       * https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     */
     const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    const MIN_LENGTH = 6;
+    const MIN_LENGTH = 7;
     const validateEmail = emailRegex.test(email);
-    if (validateEmail && password.length > MIN_LENGTH) {
-      return false;
-    }
-    return true;
+
+    return (!validateEmail || password.length < MIN_LENGTH);
   };
 
   return (
@@ -56,7 +54,7 @@ const Login = () => {
       <button
         type="button"
         data-testid="login-submit-btn"
-        disabled={ validadeButton() }
+        disabled={ validateButton() }
         onClick={ handleClick }
       >
         Entrar
