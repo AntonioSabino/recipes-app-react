@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Drinks from './components/Drinks';
 import Explore from './components/Explore';
 import Foods from './components/Foods';
-import Home from './components/Home';
+import Login from './components/Login';
 import ExploreFoods from './components/ExploreFoods';
 import ExploreDrinks from './components/ExploreDrinks';
 import Ingredients from './components/Ingredients';
@@ -15,7 +15,7 @@ import Favorite from './components/Favorite';
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={ Home } />
+    <Route exact path="/" component={ Login } />
     <Route exact path="/foods" component={ Foods } />
     <Route exact path="/drinks" component={ Drinks } />
     <Route exact path="/explore" component={ Explore } />
