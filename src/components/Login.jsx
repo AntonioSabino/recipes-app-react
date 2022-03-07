@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [disabled, setDisabled] = useState(true);
 
   const handleClick = () => {
     const emailStorage = { email };
@@ -22,16 +21,10 @@ const Login = () => {
     const MIN_LENGTH = 6;
     const validateEmail = emailRegex.test(email);
     if (validateEmail && password.length > MIN_LENGTH) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
+      return false;
     }
+    return true;
   };
-
-  useEffect(() => {
-    validadeButton();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, password]);
 
   return (
     <form>
@@ -63,7 +56,7 @@ const Login = () => {
       <button
         type="button"
         data-testid="login-submit-btn"
-        disabled={ disabled }
+        disabled={ validadeButton() }
         onClick={ handleClick }
       >
         Entrar
