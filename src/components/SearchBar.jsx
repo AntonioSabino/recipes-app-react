@@ -11,6 +11,7 @@ function SearchBar() {
       <div>
         <label htmlFor="Ingredients">
           <input
+            data-testid="ingredient-search-radio"
             type="radio"
             value="Ingredients"
             name="search"
@@ -20,6 +21,7 @@ function SearchBar() {
         </label>
         <label htmlFor="Name">
           <input
+            data-testid="name-search-radio"
             type="radio"
             value="Name"
             name="search"
@@ -28,6 +30,7 @@ function SearchBar() {
         </label>
         <label htmlFor="First Letter">
           <input
+            data-testid="first-letter-search-radio"
             type="radio"
             value="First Letter"
             name="search"
@@ -35,7 +38,10 @@ function SearchBar() {
           First Letter
         </label>
       </div>
-      <button type="button">
+      <button
+        type="button"
+        data-testid="exec-search-btn"
+      >
         Search
       </button>
     </form>
