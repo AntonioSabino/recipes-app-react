@@ -6,8 +6,10 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
 
   const handleClick = () => {
+    const emailStorage = { email };
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', JSON.stringify(emailStorage));
   };
 
   const validadeButton = () => {
