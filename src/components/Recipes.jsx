@@ -6,7 +6,7 @@ import { MAX_RECIPES } from '../services/consts';
 function Recipes({ isDrink }) {
   const { data } = useContext(AppContext);
   return (
-    data.filter((_meal, index) => index < MAX_RECIPES)
+    data.length && data.filter((_meal, index) => index < MAX_RECIPES)
       .map((meal, index) => (
         <div
           data-testid={ `${index}-recipe-card` }
@@ -26,7 +26,7 @@ function Recipes({ isDrink }) {
 }
 
 Recipes.propTypes = {
-  isDrink: PropTypes.bool.isRequired,
-};
+  isDrink: PropTypes.bool,
+}.isRequired;
 
 export default Recipes;
