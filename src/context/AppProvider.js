@@ -4,10 +4,16 @@ import AppContext from './AppContext';
 
 const AppProvider = ({ children }) => {
   const [data, setData] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [searchType, setSearchType] = useState('');
 
   const context = {
     data,
     setData,
+    inputValue,
+    setInputValue,
+    searchType,
+    setSearchType,
   };
 
   return (
