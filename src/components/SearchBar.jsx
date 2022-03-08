@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
-import FST_LETTER from '../services/consts';
+import { FST_LETTER } from '../services/consts';
 import fetchData from '../services/functions';
 
 function SearchBar() {
