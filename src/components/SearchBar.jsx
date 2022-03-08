@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
-import FST_LETTER from '../services/consts';
+import { FST_LETTER } from '../services/consts';
 import { fetchMeals, fetchDrinks } from '../services/functions';
 
 function SearchBar() {
@@ -9,8 +9,8 @@ function SearchBar() {
     setInputValue,
     searchType,
     setSearchType,
-    setData,
-    data,
+    setDataMeals,
+    setDataDrinks,
   } = useContext(AppContext);
 
   const handleClick = () => {
@@ -18,23 +18,20 @@ function SearchBar() {
       global.alert('Your search must have only 1 (one) character');
     } else if (window.location.pathname === '/drinks') {
       fetchDrinks(inputValue, searchType).then((drinks) => {
-        setData(drinks);
+        setDataDrinks(drinks);
         if (drinks.length === 1) {
           window.location.href = `/drinks/${drinks[0].idDrink}`;
         }
       });
     } else {
       fetchMeals(inputValue, searchType).then((meals) => {
-        setData(meals);
+        setDataMeals(meals);
         if (meals.length === 1) {
-          console.log(meals[0].idMeal);
           window.location.href = `/foods/${meals[0].idMeal}`;
         }
       });
     }
   };
-
-  console.log(data);
 
   return (
     <form>

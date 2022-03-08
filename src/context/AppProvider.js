@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from './AppContext';
+import { fetchMeals, fetchDrinks } from '../services/functions';
 
 const AppProvider = ({ children }) => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState([]);
+  const [dataMeals, setDataMeals] = useState([]);
+  const [dataDrinks, setDataDrinks] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [searchType, setSearchType] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const context = {
     data,
@@ -14,7 +18,20 @@ const AppProvider = ({ children }) => {
     setInputValue,
     searchType,
     setSearchType,
+    dataMeals,
+    dataDrinks,
+    setDataDrinks,
+    setDataMeals,
+    isLoading,
   };
+
+  useEffect(() => {
+    fetchMeals('', 'Name').then((meals) => setDataMeals(meals));
+    fetchDrinks('', 'Name').then((drinks) => {
+      setDataDrinks(drinks);
+      setIsLoading(false);
+    });
+  }, []);
 
   return (
     <AppContext.Provider value={ context }>
