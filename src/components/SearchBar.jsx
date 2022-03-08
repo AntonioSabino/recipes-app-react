@@ -13,14 +13,15 @@ function SearchBar() {
     setDataDrinks,
   } = useContext(AppContext);
 
-  const handleClick = () => {
-    if (searchType === FST_LETTER && inputValue.length > 1) {
-      global.alert('Your search must have only 1 (one) character');
-    } else if (window.location.pathname === '/drinks') {
+  const drinksOrMeals = () => {
+    if (window.location.pathname === '/drinks') {
       fetchDrinks(inputValue, searchType).then((drinks) => {
         setDataDrinks(drinks);
         if (drinks.length === 1) {
           window.location.href = `/drinks/${drinks[0].idDrink}`;
+        }
+        if (drinks.length === 0) {
+          global.alert('Sorry, we haven\'t found any recipes for these filters.');
         }
       });
     } else {
@@ -29,7 +30,18 @@ function SearchBar() {
         if (meals.length === 1) {
           window.location.href = `/foods/${meals[0].idMeal}`;
         }
+        if (meals.length === 0) {
+          global.alert('Sorry, we haven\'t found any recipes for these filters.');
+        }
       });
+    }
+  };
+
+  const handleClick = () => {
+    if (searchType === FST_LETTER && inputValue.length > 1) {
+      global.alert('Your search must have only 1 (one) character');
+    } else {
+      drinksOrMeals();
     }
   };
 
