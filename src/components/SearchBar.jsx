@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import FST_LETTER from '../services/consts';
 import fetchData from '../services/functions';
 
 function SearchBar() {
@@ -12,7 +13,11 @@ function SearchBar() {
   } = useContext(AppContext);
 
   const handleClick = () => {
-    fetchData(inputValue, searchType).then((meals) => setData(meals));
+    if (searchType === FST_LETTER && inputValue.length > 1) {
+      global.alert('Your search must have only 1 (one) character');
+    } else {
+      fetchData(inputValue, searchType).then((meals) => setData(meals));
+    }
   };
 
   return (
@@ -52,9 +57,9 @@ function SearchBar() {
             data-testid="first-letter-search-radio"
             type="radio"
             id="firstLetter"
-            value="First Letter"
+            value={ FST_LETTER }
             name="search"
-            onClick={ () => setSearchType('First Letter') }
+            onClick={ () => setSearchType(FST_LETTER) }
           />
           First Letter
         </label>
