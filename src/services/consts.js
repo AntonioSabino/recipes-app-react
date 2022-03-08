@@ -1,3 +1,3 @@
-const FST_LETTER = 'First Letter';
+export const FST_LETTER = 'First Letter';
 
-export default FST_LETTER;
+export const MAX_RECIPES = 12;
