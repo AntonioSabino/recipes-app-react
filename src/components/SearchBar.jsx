@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 import { FST_LETTER } from '../services/consts';
-import fetchData from '../services/functions';
+import { fetchMeals, fetchDrinks } from '../services/functions';
 
 function SearchBar() {
   const {
@@ -10,15 +10,20 @@ function SearchBar() {
     searchType,
     setSearchType,
     setData,
+    data,
   } = useContext(AppContext);
 
   const handleClick = () => {
     if (searchType === FST_LETTER && inputValue.length > 1) {
       global.alert('Your search must have only 1 (one) character');
+    } else if (window.location.pathname === '/drinks') {
+      fetchDrinks(inputValue, searchType).then((drinks) => setData(drinks));
     } else {
-      fetchData(inputValue, searchType).then((meals) => setData(meals));
+      fetchMeals(inputValue, searchType).then((meals) => setData(meals));
     }
   };
+
+  console.log(data);
 
   return (
     <form>
