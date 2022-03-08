@@ -17,9 +17,20 @@ function SearchBar() {
     if (searchType === FST_LETTER && inputValue.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     } else if (window.location.pathname === '/drinks') {
-      fetchDrinks(inputValue, searchType).then((drinks) => setData(drinks));
+      fetchDrinks(inputValue, searchType).then((drinks) => {
+        setData(drinks);
+        if (drinks.length === 1) {
+          window.location.href = `/drinks/${drinks[0].idDrink}`;
+        }
+      });
     } else {
-      fetchMeals(inputValue, searchType).then((meals) => setData(meals));
+      fetchMeals(inputValue, searchType).then((meals) => {
+        setData(meals);
+        if (meals.length === 1) {
+          console.log(meals[0].idMeal);
+          window.location.href = `/foods/${meals[0].idMeal}`;
+        }
+      });
     }
   };
 
