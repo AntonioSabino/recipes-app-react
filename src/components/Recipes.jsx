@@ -5,8 +5,6 @@ import AppContext from '../context/AppContext';
 function Recipes({ isDrink, data }) {
   const { isLoading } = useContext(AppContext);
 
-  console.log(data);
-
   return (
     isLoading ? <h2>Carregando...</h2>
       : data.map((meal, index) => (
