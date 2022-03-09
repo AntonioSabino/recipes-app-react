@@ -64,7 +64,7 @@ export const updateCategory = (newType, prevType) => {
 };
 
 const filterByCategories = async (name, category) => {
-  const endpoint = `www.the${name}db.com/api/json/v1/1/filter.php?c=${category}`;
+  const endpoint = `https://www.the${name}db.com/api/json/v1/1/filter.php?c=${category}`;
   try {
     const response = await fetch(endpoint);
     const data = await response.json();
