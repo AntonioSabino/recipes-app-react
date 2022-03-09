@@ -110,5 +110,5 @@ export const fetchDetails = async (id, name) => {
 
 export const getSavedEmail = () => {
   const user = localStorage.getItem('user');
-  return JSON.parse(user).email;
+  return user ? JSON.parse(user).email : 'email@xyz.com';
 };
