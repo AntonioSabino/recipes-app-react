@@ -92,3 +92,8 @@ export const filterMealByType = async (newType, prevType) => {
   const data = await filterByCategories('meal', newType);
   return data.meals.slice(0, MAX_RECIPES);
 };
+
+export const getSavedEmail = () => {
+  const user = localStorage.getItem('user');
+  return JSON.parse(user).email;
+};
