@@ -12,7 +12,9 @@ function Foods() {
     <div>
       <Header hasProfileIcon hasSearchIcon name="Foods" />
       <Categories categories={ mealTypes } />
-      <FoodRecipes />
+      <section className="recipes">
+        <FoodRecipes />
+      </section>
       <Footer />
     </div>
   );
