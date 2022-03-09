@@ -8,3 +8,11 @@
   bottom: 0;
   position: fixed;
 }
+
+a {
+  padding-bottom: 10px;
+}
+
+img {
+  max-width: 100px;
+}
