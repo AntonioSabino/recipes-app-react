@@ -13,6 +13,8 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [mealTypes, setMealTypes] = useState([]);
   const [cocktailTypes, setCocktailTypes] = useState([]);
+  const [foodCategory, setFoodCategory] = useState('All');
+  const [drinkCategory, setDrinkCategory] = useState('All');
 
   const context = {
     data,
@@ -30,6 +32,10 @@ const AppProvider = ({ children }) => {
     setDataDrinks,
     setDataMeals,
     isLoading,
+    foodCategory,
+    setFoodCategory,
+    drinkCategory,
+    setDrinkCategory,
   };
 
   useEffect(() => {
@@ -39,10 +45,7 @@ const AppProvider = ({ children }) => {
       setIsLoading(false);
     });
     fetchMealTypes().then((types) => setMealTypes(types));
-    fetchCocktailTypes().then((types) => {
-      setCocktailTypes(types);
-      console.log(types);
-    });
+    fetchCocktailTypes().then((types) => setCocktailTypes(types));
   }, []);
 
   return (
