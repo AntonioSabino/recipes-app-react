@@ -3,16 +3,16 @@ import AppContext from '../context/AppContext';
 import Categories from './Categories';
 import Footer from './Footer';
 import Header from './Header';
-import Recipes from './Recipes';
+import FoodRecipes from './FoodRecipes';
 
 function Foods() {
-  const { dataMeals, mealTypes } = useContext(AppContext);
+  const { mealTypes } = useContext(AppContext);
 
   return (
     <div>
       <Header hasProfileIcon hasSearchIcon name="Foods" />
       <Categories categories={ mealTypes } />
-      <Recipes data={ dataMeals } />
+      <FoodRecipes />
       <Footer />
     </div>
   );
