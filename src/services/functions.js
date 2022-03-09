@@ -36,7 +36,6 @@ const fetchCategories = async (name) => {
   const endpoint = `https://www.the${name}db.com/api/json/v1/1/list.php?c=list`;
   try {
     const response = await fetch(endpoint);
-    console.log(response);
     const data = await response.json();
     // return datadrinks.slice(0, MAX_RECIPES);
     return data;
@@ -91,6 +90,22 @@ export const filterMealByType = async (newType, prevType) => {
   }
   const data = await filterByCategories('meal', newType);
   return data.meals.slice(0, MAX_RECIPES);
+};
+
+export const fetchDetails = async (id, name) => {
+  const endpoint = `https://www.the${name}db.com/api/json/v1/1/lookup.php?i=${id}`;
+  try {
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    // return datadrinks.slice(0, MAX_RECIPES);
+    if (name === 'meal') {
+      return data.meals;
+    }
+    return data.drinks;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
 
 export const getSavedEmail = () => {
