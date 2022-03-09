@@ -12,6 +12,7 @@ import Nationalities from './components/Nationalities';
 import Profile from './components/Profile';
 import Done from './components/Done';
 import Favorite from './components/Favorite';
+import Details from './components/Details';
 
 const Routes = () => (
   <Switch>
@@ -27,8 +28,9 @@ const Routes = () => (
     <Route exact path="/profile" component={ Profile } />
     <Route exact path="/done-recipes" component={ Done } />
     <Route exact path="/favorite-recipes" component={ Favorite } />
-    {/* <Route exact path="/foods/{id-da-receita}" component={<Home />} />
-    <Route exact path="/drinks/{id-da-receita}" component={<Home />} />
+    <Route exact path="/foods/:id" component={ Details } />
+    <Route exact path="/drinks/:id" component={ Details } />
+    {/*
     <Route exact path="/foods/{id-da-receita}/in-progress" component={<Home />} />
     <Route exact path="/drinks/{id-da-receita}/in-progress" component={<Home />} />
     */}
