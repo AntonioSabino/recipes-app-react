@@ -12,7 +12,7 @@ function Drinks() {
     <div>
       <Header hasProfileIcon hasSearchIcon name="Drinks" />
       <Recipes isDrink data={ dataDrinks } />
-      <Categories categories={ cocktailTypes } />
+      <Categories isDrink categories={ cocktailTypes } />
       <Footer />
     </div>
   );
