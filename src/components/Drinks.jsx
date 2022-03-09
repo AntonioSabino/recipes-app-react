@@ -11,8 +11,8 @@ function Drinks() {
   return (
     <div>
       <Header hasProfileIcon hasSearchIcon name="Drinks" />
+      <Categories isDrink categories={ cocktailTypes } />
       <Recipes isDrink data={ dataDrinks } />
-      <Categories categories={ cocktailTypes } />
       <Footer />
     </div>
   );
