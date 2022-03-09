@@ -27,8 +27,19 @@ function Categories({ categories, isDrink }) {
     }
   };
 
+  const clearFilter = () => (isDrink
+    ? handleClick(drinkCategory)
+    : handleClick(foodCategory));
+
   return (
     <section>
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ clearFilter }
+      >
+        All
+      </button>
       { categories.map(({ strCategory }) => (
         <button
           key={ strCategory }
