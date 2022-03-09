@@ -44,12 +44,14 @@ const FoodDetails = ({ match }) => {
           <ul>
             {
               ingredients.map((ingredient, index) => (
-                <li
-                  key={ index }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {`${meal[0][measures[index]]} - ${meal[0][ingredient]}`}
-                </li>
+                meal[0][ingredient] ? (
+                  <li
+                    key={ index }
+                    data-testid={ `${index}-ingredient-name-and-measure` }
+                  >
+                    {`${meal[0][measures[index]]} - ${meal[0][ingredient]}`}
+                  </li>)
+                  : ''
               ))
             }
           </ul>
