@@ -107,3 +107,8 @@ export const fetchDetails = async (id, name) => {
     return [];
   }
 };
+
+export const getSavedEmail = () => {
+  const user = localStorage.getItem('user');
+  return JSON.parse(user).email;
+};
