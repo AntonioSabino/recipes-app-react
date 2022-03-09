@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 
 function Recipes({ isDrink, data }) {
@@ -8,7 +9,8 @@ function Recipes({ isDrink, data }) {
   return (
     isLoading ? <h2>Carregando...</h2>
       : data.map((meal, index) => (
-        <div
+        <Link
+          to={ isDrink ? `/drinks/${meal.idDrink}` : `/foods/${meal.idMeal}` }
           data-testid={ String(index).concat('-recipe-card') }
           key={ String(index).concat('-recipe-card') }
         >
@@ -20,7 +22,7 @@ function Recipes({ isDrink, data }) {
           <h4 data-testid={ String(index).concat('-card-name') }>
             { isDrink ? meal.strDrink : meal.strMeal }
           </h4>
-        </div>
+        </Link>
       ))
   );
 }
