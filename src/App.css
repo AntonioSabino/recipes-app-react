@@ -31,3 +31,8 @@ img {
   list-style: none;
   margin: 10px;
 }
+
+.start-recipe {
+  bottom: 0;
+  position: fixed;
+}

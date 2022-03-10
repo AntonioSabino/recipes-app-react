@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchDetails } from '../services/functions';
 import AppContext from '../context/AppContext';
+import StartRecipe from './StartRecipe';
 
 const FoodDetails = ({ match }) => {
   const mealId = match.params.id;
@@ -83,9 +84,7 @@ const FoodDetails = ({ match }) => {
               ))
             }
           </ul>
-          <button type="button" data-testid="start-recipe-btn">
-            Iniciar Receita
-          </button>
+          <StartRecipe />
         </div>
       )
   );
