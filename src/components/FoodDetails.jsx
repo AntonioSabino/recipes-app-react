@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchDetails } from '../services/functions';
+import { fetchDetails, getFavoriteIds } from '../services/functions';
 import AppContext from '../context/AppContext';
 import StartRecipe from './StartRecipe';
+import whiteHeart from '../images/whiteHeartIcon.svg';
+import blackHeart from '../images/blackHeartIcon.svg';
 
 const FoodDetails = ({ match }) => {
   const mealId = match.params.id;
   const [linkCopied, setLinkCopied] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [loading, setLoading] = useState(true);
   const [meal, setMeal] = useState([]);
   const [ingredients, setIngredients] = useState({});
@@ -30,6 +33,7 @@ const FoodDetails = ({ match }) => {
       getIngredients(data[0]);
       setLoading(false);
     });
+    setIsFavorite(getFavoriteIds().some((id) => id === mealId));
   }, [mealId]);
 
   console.log(recommendedDrinks);
@@ -52,8 +56,15 @@ const FoodDetails = ({ match }) => {
           >
             Compartilhar
           </button>
-          <button type="button" data-testid="favorite-btn">
-            Favoritar
+          <button
+            type="button"
+            onClick={ () => setIsFavorite(!isFavorite) }
+          >
+            <img
+              src={ isFavorite ? blackHeart : whiteHeart }
+              alt="heart"
+              data-testid="favorite-btn"
+            />
           </button>
           <p data-testid="recipe-category">{meal[0].strCategory}</p>
           <ul>
