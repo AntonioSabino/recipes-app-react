@@ -153,3 +153,9 @@ export const filterByIng = async (ingredient, isDrink) => {
   const filtered = isDrink ? data.drinks : data.meals;
   return filtered.slice(0, MAX_RECIPES);
 };
+
+export const filterByNacionality = async () => {
+  const url = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+  const data = await defaultFetch(url);
+  return data;
+};
