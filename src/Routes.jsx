@@ -14,12 +14,9 @@ import Done from './components/Done';
 import Favorite from './components/Favorite';
 import DrinkDetails from './components/DrinkDetails';
 import FoodDetails from './components/FoodDetails';
-<<<<<<< HEAD
 import NotFound from './components/NotFound';
-=======
 import FoodInProgress from './components/FoodInProgress';
 import DrinkInProgress from './components/DrinkInProgress';
->>>>>>> 53c32fb7ab91dbe389e2560f3711e3925c92eddc
 
 const Routes = () => (
   <Switch>
@@ -37,7 +34,6 @@ const Routes = () => (
     <Route exact path="/favorite-recipes" component={ Favorite } />
     <Route exact path="/foods/:id" component={ FoodDetails } />
     <Route exact path="/drinks/:id" component={ DrinkDetails } />
-    <Route path="*" component={ NotFound } />
     <Route
       exact
       path="/foods/:id-da-receita/in-progress"
@@ -48,6 +44,7 @@ const Routes = () => (
       path="/drinks/:id-da-receita/in-progress"
       component={ <DrinkInProgress /> }
     />
+    <Route path="*" component={ NotFound } />
   </Switch>
 );
 
