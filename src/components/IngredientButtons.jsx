@@ -53,6 +53,9 @@ function IngredientButtons({ isDrink }) {
   );
 }
 
+// quando inDrink é verdadeiro, são exibidos ingredientes de bebidas,
+// quando inDrink é falso, são exibidos ingredientes de comidas,
+
 IngredientButtons.propTypes = {
   isDrink: PropTypes.bool,
 }.isRequired;
