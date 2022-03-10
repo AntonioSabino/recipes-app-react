@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getRandomId } from '../services/functions';
 
 function ExploreButtons({ isDrink }) {
+  const { push } = useHistory();
+
+  const handleClick = () => {
+    getRandomId(isDrink).then((path) => push(path));
+  };
+
   return (
     <nav className="explore-nav">
       <Link
@@ -16,9 +23,9 @@ function ExploreButtons({ isDrink }) {
           <h5>By Nationality</h5>
         </Link>
       )}
-      <div>
+      <button type="button" onClick={ handleClick }>
         <h5 data-testid="explore-surprise">Surprise me!</h5>
-      </div>
+      </button>
     </nav>
   );
 }

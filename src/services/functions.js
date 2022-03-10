@@ -112,3 +112,23 @@ export const getSavedEmail = () => {
   const user = localStorage.getItem('user');
   return user ? JSON.parse(user).email : 'email@xyz.com';
 };
+
+const defaultFetch = async (endpoint) => {
+  try {
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return '';
+  }
+};
+
+export const getRandomId = async (isDrink) => {
+  const name = isDrink ? 'thecocktaildb' : 'themealdb';
+  const endpoint = `https://www.${name}.com/api/json/v1/1/random.php`;
+  const data = await defaultFetch(endpoint);
+  const id = isDrink ? data.drinks[0].idDrink : data.meals[0].idMeal;
+  const initialPath = isDrink ? '/drinks/' : '/foods/';
+  return `${initialPath}${id}`;
+};
