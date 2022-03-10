@@ -132,3 +132,15 @@ export const getRandomId = async (isDrink) => {
   const initialPath = isDrink ? '/drinks/' : '/foods/';
   return `${initialPath}${id}`;
 };
+
+export const getRecipeIng = async (isDrink) => {
+  const name = isDrink ? 'thecocktaildb' : 'themealdb';
+  const endpoint = `https://www.${name}.com/api/json/v1/1/list.php?i=list`;
+  const data = await defaultFetch(endpoint);
+  const info = isDrink
+    ? data.drinks.slice(0, MAX_RECIPES) : data.meals.slice(0, MAX_RECIPES);
+  const ingredients = isDrink
+    ? info.map(({ strIngredient1 }) => strIngredient1)
+    : info.map(({ strIngredient }) => strIngredient);
+  return ingredients;
+};
