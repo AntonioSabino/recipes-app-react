@@ -84,7 +84,7 @@ const FoodDetails = ({ match }) => {
               ))
             }
           </ul>
-          <StartRecipe />
+          <StartRecipe id={ mealId } />
         </div>
       )
   );

@@ -77,7 +77,7 @@ const DrinkDetails = ({ match }) => {
               ))
             }
           </ul>
-          <StartRecipe />
+          <StartRecipe id={ drinkId } />
         </div>
       )
   );
