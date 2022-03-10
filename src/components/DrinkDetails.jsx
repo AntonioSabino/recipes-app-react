@@ -38,7 +38,8 @@ const DrinkDetails = ({ match }) => {
 
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
-    const info = { category: drink[0].strCategory,
+    const info = {
+      category: drink[0].strCategory,
       nationality: '',
       id: drinkId,
       type: 'drink',
