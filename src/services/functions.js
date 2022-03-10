@@ -159,3 +159,16 @@ export const filterByNacionality = async () => {
   const data = await defaultFetch(url);
   return data;
 };
+
+export const getFavoriteIds = () => {
+  const data = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const favorites = data || [];
+  return favorites.map(({ id }) => id);
+};
+
+export const saveFavorite = (data) => {
+  const prevData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const favorites = prevData || [];
+  const newFavorites = [...favorites, data];
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+};
