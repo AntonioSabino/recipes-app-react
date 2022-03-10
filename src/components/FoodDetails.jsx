@@ -7,6 +7,7 @@ import StartRecipe from './StartRecipe';
 
 const FoodDetails = ({ match }) => {
   const mealId = match.params.id;
+  const [linkCopied, setLinkCopied] = useState(false);
   const [loading, setLoading] = useState(true);
   const [meal, setMeal] = useState([]);
   const [ingredients, setIngredients] = useState({});
@@ -16,6 +17,11 @@ const FoodDetails = ({ match }) => {
   const getIngredients = (thisMeal) => {
     setIngredients(Object.keys(thisMeal).filter((item) => item.includes('Ingredient')));
     setMeasures(Object.keys(thisMeal).filter((item) => item.includes('Measure')));
+  };
+
+  const handleShare = () => {
+    navigator.clipboard.writeText(`http://localhost:3000/foods/${mealId}`);
+    setLinkCopied(true);
   };
 
   useEffect(() => {
@@ -32,13 +38,18 @@ const FoodDetails = ({ match }) => {
     loading ? <h2>Carregando...</h2>
       : (
         <div>
+          { linkCopied && <h5>Link copied!</h5> }
           <img
             data-testid="recipe-photo"
             src={ meal[0].strMealThumb }
             alt={ meal[0].strMeal }
           />
           <h4 data-testid="recipe-title">{meal[0].strMeal}</h4>
-          <button type="button" data-testid="share-btn">
+          <button
+            type="button"
+            onClick={ handleShare }
+            data-testid="share-btn"
+          >
             Compartilhar
           </button>
           <button type="button" data-testid="favorite-btn">
