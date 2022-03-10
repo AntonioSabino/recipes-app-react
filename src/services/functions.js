@@ -1,4 +1,4 @@
-import { MAX_RECIPES, MAX_TYPES } from './consts';
+import { MAX_INGREDIENTS, MAX_RECIPES, MAX_TYPES } from './consts';
 
 export const fetchMeals = async (input, type) => {
   const endpoint = {
@@ -143,4 +143,26 @@ export const getRecipeIng = async (isDrink) => {
     ? info.map(({ strIngredient1 }) => strIngredient1)
     : info.map(({ strIngredient }) => strIngredient);
   return ingredients;
+};
+
+const hasIngredient = (data, ingredient) => {
+  for (let i = 1; i <= MAX_INGREDIENTS; i += 1) {
+    const str = `strIngredient${i}`;
+    if (data[str] === ingredient) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const filterByIng = async (ingredient, isDrink) => {
+  const url = isDrink
+    ? 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
+    : 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  const response = await defaultFetch(url);
+  const data = response || [];
+  const filtered = isDrink
+    ? data.drinks.filter((drink) => hasIngredient(drink, ingredient))
+    : data.meals.filter((meal) => hasIngredient(meal, ingredient));
+  return filtered.slice(0, MAX_RECIPES);
 };

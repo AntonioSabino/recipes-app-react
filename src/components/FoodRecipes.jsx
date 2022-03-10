@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext';
 
 function FoodRecipes() {
   const { isLoading, dataMeals } = useContext(AppContext);
+  console.log(dataMeals);
 
   return (
     isLoading ? <h2>Carregando...</h2>
