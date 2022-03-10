@@ -20,3 +20,14 @@ a {
 img {
   max-width: 100px;
 }
+
+.recommended-carrocel {
+  display: flex;
+  overflow-x: hidden;
+  width: 235px;
+}
+
+.recommended-carrocel li {
+  list-style: none;
+  margin: 10px;
+}

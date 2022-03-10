@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import AppContext from './AppContext';
 import { fetchMeals, fetchDrinks,
   fetchMealTypes, fetchCocktailTypes } from '../services/functions';
+import { MAX_RECOMMENDS } from '../services/consts';
 
 const AppProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [dataMeals, setDataMeals] = useState([]);
+  const [recommendedMeals, setRecommendedMeals] = useState([]);
   const [dataDrinks, setDataDrinks] = useState([]);
+  const [recommendedDrinks, setRecommendedDrinks] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [searchType, setSearchType] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +32,8 @@ const AppProvider = ({ children }) => {
     setSearchType,
     dataMeals,
     dataDrinks,
+    recommendedMeals,
+    recommendedDrinks,
     setDataDrinks,
     setDataMeals,
     isLoading,
@@ -39,9 +44,13 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchMeals('', 'Name').then((meals) => setDataMeals(meals));
+    fetchMeals('', 'Name').then((meals) => {
+      setDataMeals(meals);
+      setRecommendedMeals(meals.slice(0, MAX_RECOMMENDS));
+    });
     fetchDrinks('', 'Name').then((drinks) => {
       setDataDrinks(drinks);
+      setRecommendedDrinks(drinks.slice(0, MAX_RECOMMENDS));
       setIsLoading(false);
     });
     fetchMealTypes().then((types) => setMealTypes(types));

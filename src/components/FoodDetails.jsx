@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchDetails } from '../services/functions';
+import AppContext from '../context/AppContext';
 
 const FoodDetails = ({ match }) => {
   const mealId = match.params.id;
@@ -8,6 +9,7 @@ const FoodDetails = ({ match }) => {
   const [meal, setMeal] = useState([]);
   const [ingredients, setIngredients] = useState({});
   const [measures, setMeasures] = useState({});
+  const { recommendedDrinks } = useContext(AppContext);
 
   const getIngredients = (thisMeal) => {
     setIngredients(Object.keys(thisMeal).filter((item) => item.includes('Ingredient')));
@@ -22,7 +24,7 @@ const FoodDetails = ({ match }) => {
     });
   }, [mealId]);
 
-  console.log(meal[0]);
+  console.log(recommendedDrinks);
 
   return (
     loading ? <h2>Carregando...</h2>
@@ -63,12 +65,23 @@ const FoodDetails = ({ match }) => {
             data-testid="video"
             src={ meal[0].strYoutube }
           />
-          <ul>
-            <li
-              data-testid="0-recomendation-card"
-            >
-              Receitas Recomendadas
-            </li>
+          <ul className="recommended-carrocel">
+            {
+              recommendedDrinks.map((drink, index) => (
+                <li
+                  key={ index }
+                  data-testid={ `${index}-recomendation-card` }
+                >
+                  <img
+                    alt={ drink.strDrink }
+                    src={ drink.strDrinkThumb }
+                  />
+                  <h4 data-testid={ `${index}-recomendation-title` }>
+                    { drink.strDrink }
+                  </h4>
+                </li>
+              ))
+            }
           </ul>
           <button type="button" data-testid="start-recipe-btn">
             Iniciar Receita
