@@ -165,3 +165,10 @@ export const getFavoriteIds = () => {
   const favorites = data || [];
   return favorites.map(({ id }) => id);
 };
+
+export const saveFavorite = (data) => {
+  const prevData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const favorites = prevData || [];
+  const newFavorites = [...favorites, data];
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+};

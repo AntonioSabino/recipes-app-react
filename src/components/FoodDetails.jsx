@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchDetails, getFavoriteIds } from '../services/functions';
+import { fetchDetails, getFavoriteIds, saveFavorite } from '../services/functions';
 import AppContext from '../context/AppContext';
 import StartRecipe from './StartRecipe';
 import whiteHeart from '../images/whiteHeartIcon.svg';
@@ -38,6 +38,18 @@ const FoodDetails = ({ match }) => {
 
   console.log(recommendedDrinks);
 
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    const info = { category: meal[0].strCategory,
+      nationality: meal[0].strArea,
+      id: mealId,
+      type: 'food',
+      alcoholicOrNot: '',
+      name: meal[0].strMeal,
+      image: meal[0].strMealThumb };
+    saveFavorite(info);
+  };
+
   return (
     loading ? <h2>Carregando...</h2>
       : (
@@ -58,7 +70,7 @@ const FoodDetails = ({ match }) => {
           </button>
           <button
             type="button"
-            onClick={ () => setIsFavorite(!isFavorite) }
+            onClick={ handleFavorite }
           >
             <img
               src={ isFavorite ? blackHeart : whiteHeart }
