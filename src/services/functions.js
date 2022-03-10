@@ -144,3 +144,12 @@ export const getRecipeIng = async (isDrink) => {
     : info.map(({ strIngredient }) => strIngredient);
   return ingredients;
 };
+
+export const filterByIng = async (ingredient, isDrink) => {
+  const url = isDrink
+    ? `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
+    : `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  const data = await defaultFetch(url);
+  const filtered = isDrink ? data.drinks : data.meals;
+  return filtered.slice(0, MAX_RECIPES);
+};
