@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { fetchDetails } from '../services/functions';
 import AppContext from '../context/AppContext';
 import StartRecipe from './StartRecipe';
@@ -77,7 +78,9 @@ const DrinkDetails = ({ match }) => {
               ))
             }
           </ul>
-          <StartRecipe id={ drinkId } />
+          <Link to={ `/drinks/${drinkId}/in-progress` }>
+            <StartRecipe id={ drinkId } />
+          </Link>
         </div>
       )
   );

@@ -14,6 +14,8 @@ import Done from './components/Done';
 import Favorite from './components/Favorite';
 import DrinkDetails from './components/DrinkDetails';
 import FoodDetails from './components/FoodDetails';
+import FoodInProgress from './components/FoodInProgress';
+import DrinkInProgress from './components/DrinkInProgress';
 
 const Routes = () => (
   <Switch>
@@ -31,10 +33,16 @@ const Routes = () => (
     <Route exact path="/favorite-recipes" component={ Favorite } />
     <Route exact path="/foods/:id" component={ FoodDetails } />
     <Route exact path="/drinks/:id" component={ DrinkDetails } />
-    {/*
-    <Route exact path="/foods/{id-da-receita}/in-progress" component={<Home />} />
-    <Route exact path="/drinks/{id-da-receita}/in-progress" component={<Home />} />
-    */}
+    <Route
+      exact
+      path="/foods/:id-da-receita/in-progress"
+      component={ <FoodInProgress /> }
+    />
+    <Route
+      exact
+      path="/drinks/:id-da-receita/in-progress"
+      component={ <DrinkInProgress /> }
+    />
   </Switch>
 );
 
