@@ -14,6 +14,7 @@ import Done from './components/Done';
 import Favorite from './components/Favorite';
 import DrinkDetails from './components/DrinkDetails';
 import FoodDetails from './components/FoodDetails';
+import NotFound from './components/NotFound';
 import FoodInProgress from './components/FoodInProgress';
 import DrinkInProgress from './components/DrinkInProgress';
 
@@ -43,6 +44,7 @@ const Routes = () => (
       path="/drinks/:id-da-receita/in-progress"
       component={ <DrinkInProgress /> }
     />
+    <Route path="*" component={ NotFound } />
   </Switch>
 );
 
