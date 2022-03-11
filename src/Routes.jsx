@@ -37,12 +37,12 @@ const Routes = () => (
     <Route
       exact
       path="/foods/:id-da-receita/in-progress"
-      component={ <FoodInProgress /> }
+      component={ FoodInProgress }
     />
     <Route
       exact
       path="/drinks/:id-da-receita/in-progress"
-      component={ <DrinkInProgress /> }
+      component={ DrinkInProgress }
     />
     <Route path="*" component={ NotFound } />
   </Switch>

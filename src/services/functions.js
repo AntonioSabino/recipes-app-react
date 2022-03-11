@@ -154,10 +154,19 @@ export const filterByIng = async (ingredient, isDrink) => {
   return filtered.slice(0, MAX_RECIPES);
 };
 
-export const filterByNacionality = async () => {
+export const getNacionalities = async () => {
   const url = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
   const data = await defaultFetch(url);
-  return data;
+  return data.meals;
+};
+
+export const filterByNacionality = async (nacionality) => {
+  if (nacionality === 'All') {
+    return fetchMeals('', 'Name');
+  }
+  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${nacionality}`;
+  const data = await defaultFetch(url);
+  return data.meals.slice(0, MAX_RECIPES);
 };
 
 export const getFavoriteIds = () => {
