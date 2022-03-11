@@ -4,7 +4,6 @@ import Proptypes from 'prop-types';
 function StartRecipe({ id }) {
   const buttonName = () => {
     const doneRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
-    console.log(doneRecipe);
     const isDone = doneRecipe?.some((data) => data.id === id);
     const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
     let isInProgress = false;
@@ -24,7 +23,7 @@ function StartRecipe({ id }) {
   return (
     <button
       type="button"
-      className="start-recipe"
+      className="start-recipe bottom-btn"
       data-testid="start-recipe-btn"
     >
       {buttonName()}
