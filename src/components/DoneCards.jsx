@@ -41,7 +41,7 @@ function DoneCards() {
               </p>)
             : (
               <p data-testid={ `${index}-horizontal-top-text` }>
-                { recipe.category }
+                { recipe.alcoholicOrNot }
               </p>
             )}
         </div>
