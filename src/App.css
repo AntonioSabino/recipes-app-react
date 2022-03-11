@@ -37,13 +37,14 @@ img {
 
 .recommended-carrocel {
   display: flex;
+  height: 200px;
   overflow-x: hidden;
   width: 235px;
 }
 
 .recommended-carrocel li {
   list-style: none;
-  margin: 10px;
+  margin: 10px 10px 40px;
 }
 
 .start-recipe {
@@ -124,10 +125,16 @@ img {
 .categories-container button {
   background-color: #c4c4c4;
   border: none;
+  cursor: pointer;
   margin: 8px;
   min-width: 25vw;
   padding: 5px;
   text-align: start;
+  transition: 0.4s;
+}
+
+.categories-container button:hover {
+  background-color: #6ce34f;
 }
 
 .recipe-card {
@@ -140,4 +147,25 @@ img {
 
 .recipe-card:hover {
   background-color: #6ce34f;
+}
+
+.ingredients-ul li {
+  background-color: #e5e5e5;
+  list-style: none;
+  margin: 0 auto;
+  max-width: 95%;
+  padding: 5px;
+}
+
+.instructions {
+  background-color: #e5e5e5;
+  margin: 15px auto;
+  max-width: 95%;
+  padding: 5px;
+  text-align: justify;
+}
+
+.detail-img {
+  max-width: none;
+  width: 100%;
 }
