@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from './AppContext';
-import { fetchMeals, fetchDrinks,
-  fetchMealTypes, fetchCocktailTypes } from '../services/functions';
+import { fetchMeals, fetchDrinks } from '../services/functions';
 import { MAX_RECOMMENDS } from '../services/consts';
 
 const AppProvider = ({ children }) => {
@@ -14,18 +13,12 @@ const AppProvider = ({ children }) => {
   const [inputValue, setInputValue] = useState('');
   const [searchType, setSearchType] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [mealTypes, setMealTypes] = useState([]);
-  const [cocktailTypes, setCocktailTypes] = useState([]);
   const [foodCategory, setFoodCategory] = useState('All');
   const [drinkCategory, setDrinkCategory] = useState('All');
 
   const context = {
     data,
     setData,
-    mealTypes,
-    setMealTypes,
-    cocktailTypes,
-    setCocktailTypes,
     inputValue,
     setInputValue,
     searchType,
@@ -53,8 +46,6 @@ const AppProvider = ({ children }) => {
       setRecommendedDrinks(drinks.slice(0, MAX_RECOMMENDS));
       setIsLoading(false);
     });
-    fetchMealTypes().then((types) => setMealTypes(types));
-    fetchCocktailTypes().then((types) => setCocktailTypes(types));
   }, []);
 
   return (

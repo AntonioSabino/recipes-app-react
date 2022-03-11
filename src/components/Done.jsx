@@ -1,5 +1,6 @@
 import React from 'react';
 import DoneFilters from './DoneFilters';
+import DoneCards from './DoneCards';
 import Header from './Header';
 
 function Done() {
@@ -7,6 +8,7 @@ function Done() {
     <div>
       <Header hasProfileIcon name="Done Recipes" />
       <DoneFilters />
+      <DoneCards />
     </div>
   );
 }
