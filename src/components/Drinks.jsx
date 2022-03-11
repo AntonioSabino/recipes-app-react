@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
-import AppContext from '../context/AppContext';
+import React, { useEffect, useState } from 'react';
 import Categories from './Categories';
 import Footer from './Footer';
 import Header from './Header';
 import DrinkRecipes from './DrinkRecipes';
+import { fetchCocktailTypes } from '../services/functions';
 
 function Drinks() {
-  const { cocktailTypes } = useContext(AppContext);
+  const [cocktailTypes, setCocktailTypes] = useState([]);
+  useEffect(() => {
+    fetchCocktailTypes().then((types) => setCocktailTypes(types));
+  }, []);
 
   return (
     <div>
