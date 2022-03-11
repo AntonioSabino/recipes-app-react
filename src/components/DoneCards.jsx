@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import shareIcon from '../images/shareIcon.svg';
 
 function DoneCards() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -18,10 +19,31 @@ function DoneCards() {
           <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
           <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
           <p data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</p>
-          <button type="button" data-testid={ `${index}-horizontal-share-btn` }>
-            Compartilhar
-          </button>
-          <p data-testid={ `${index}-${recipe.tags}-horizontal-done-date` }>Tag1</p>
+          <img
+            src={ shareIcon }
+            alt="share icon"
+            data-testid={ `${index}-horizontal-share-btn` }
+          />
+          <p data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }>
+            { recipe.tags[0] }
+          </p>
+          <p data-testid={ `${index}-${recipe.tags[1]}-horizontal-tag` }>
+            { recipe.tags[1] }
+          </p>
+          { recipe.type === 'food'
+            ? (
+              <p data-testid={ `${index}-horizontal-top-text` }>
+                { recipe.nationality }
+                {' '}
+                -
+                {' '}
+                { recipe.category }
+              </p>)
+            : (
+              <p data-testid={ `${index}-horizontal-top-text` }>
+                { recipe.category }
+              </p>
+            )}
         </div>
       ))}
     </section>
