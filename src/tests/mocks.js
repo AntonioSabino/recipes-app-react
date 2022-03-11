@@ -14,4 +14,5 @@ export const PATH = {
   nationalities: '/explore/foods/nationalities',
   details: '/foods/52977',
   profile: '/profile',
+  drinkDetails: 'drinks/15997',
 };
