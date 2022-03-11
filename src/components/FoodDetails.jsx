@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchDetails, getFavoriteIds, saveFavorite } from '../services/functions';
+import { fetchDetails, getEmbed, getFavoriteIds,
+  saveFavorite } from '../services/functions';
 import AppContext from '../context/AppContext';
 import StartRecipe from './StartRecipe';
 import whiteHeart from '../images/whiteHeartIcon.svg';
@@ -52,7 +53,7 @@ const FoodDetails = ({ match }) => {
   return (
     loading ? <h2>Carregando...</h2>
       : (
-        <div>
+        <div className="details-container">
           { linkCopied && <h5>Link copied!</h5> }
           <img
             data-testid="recipe-photo"
@@ -60,25 +61,27 @@ const FoodDetails = ({ match }) => {
             alt={ meal[0].strMeal }
             className="detail-img"
           />
-          <h4 data-testid="recipe-title">{meal[0].strMeal}</h4>
-          <button
-            type="button"
-            onClick={ handleShare }
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
-          <button
-            type="button"
-            onClick={ handleFavorite }
-          >
-            <img
-              src={ isFavorite ? blackHeart : whiteHeart }
-              alt="heart"
-              data-testid="favorite-btn"
-            />
-          </button>
-          <p data-testid="recipe-category">{meal[0].strCategory}</p>
+          <div className="details-info">
+            <h4 data-testid="recipe-title">{meal[0].strMeal}</h4>
+            <button
+              type="button"
+              onClick={ handleShare }
+              data-testid="share-btn"
+            >
+              Compartilhar
+            </button>
+            <button
+              type="button"
+              onClick={ handleFavorite }
+            >
+              <img
+                src={ isFavorite ? blackHeart : whiteHeart }
+                alt="heart"
+                data-testid="favorite-btn"
+              />
+            </button>
+            <p data-testid="recipe-category">{meal[0].strCategory}</p>
+          </div>
           <ul className="ingredients-ul">
             {
               ingredients.map((ingredient, index) => (
@@ -102,10 +105,10 @@ const FoodDetails = ({ match }) => {
           </p>
           <iframe
             title={ meal[0].strYoutube }
-            width={ 420 }
-            height={ 315 }
+            width={ 405 }
+            height={ 275 }
             data-testid="video"
-            src={ meal[0].strYoutube }
+            src={ getEmbed(meal[0].strYoutube) }
           />
           <ul className="recommended-carrocel">
             {

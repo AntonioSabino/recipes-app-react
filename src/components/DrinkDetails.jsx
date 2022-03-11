@@ -53,7 +53,7 @@ const DrinkDetails = ({ match }) => {
   return (
     loading ? <h2>Carregando...</h2>
       : (
-        <div>
+        <div className="details-container">
           { linkCopied && <h5>Link copied!</h5> }
           <img
             data-testid="recipe-photo"
@@ -61,21 +61,23 @@ const DrinkDetails = ({ match }) => {
             alt={ drink[0].strDrink }
             className="detail-img"
           />
-          <h4 data-testid="recipe-title">{drink[0].strDrink}</h4>
-          <button onClick={ handleShare } type="button" data-testid="share-btn">
-            Compartilhar
-          </button>
-          <button
-            type="button"
-            onClick={ handleFavorite }
-          >
-            <img
-              src={ isFavorite ? blackHeart : whiteHeart }
-              alt="heart"
-              data-testid="favorite-btn"
-            />
-          </button>
-          <p data-testid="recipe-category">{drink[0].strAlcoholic}</p>
+          <div className="details-info">
+            <h4 data-testid="recipe-title">{drink[0].strDrink}</h4>
+            <button onClick={ handleShare } type="button" data-testid="share-btn">
+              Compartilhar
+            </button>
+            <button
+              type="button"
+              onClick={ handleFavorite }
+            >
+              <img
+                src={ isFavorite ? blackHeart : whiteHeart }
+                alt="heart"
+                data-testid="favorite-btn"
+              />
+            </button>
+            <p data-testid="recipe-category">{drink[0].strAlcoholic}</p>
+          </div>
           <ul className="ingredients-ul">
             {
               ingredients.map((ingredient, index) => (
