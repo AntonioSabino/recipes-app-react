@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 
 function DoneCards() {
@@ -23,13 +24,29 @@ function DoneCards() {
       { linkCopied && <h5>Link copied!</h5> }
       {doneRecipes.map((recipe, index) => (
         <div key={ recipe.id }>
-          <img
-            src={ recipe.image }
-            alt={ recipe.name }
-            data-testid={ `${index}-horizontal-image` }
-          />
+
+          { recipe.type === 'food'
+            ? (
+              <Link to={ `/foods/${recipe.id}` }>
+                <img
+                  src={ recipe.image }
+                  alt={ recipe.name }
+                  data-testid={ `${index}-horizontal-image` }
+                />
+                <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
+              </Link>)
+            : (
+              <Link to={ `/drinks/${recipe.id}` }>
+                <img
+                  src={ recipe.image }
+                  alt={ recipe.name }
+                  data-testid={ `${index}-horizontal-image` }
+                />
+                <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
+              </Link>)}
+
           <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
-          <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
+
           <p data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</p>
           <button
             type="button"
