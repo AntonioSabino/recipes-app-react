@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import { filterByNacionality } from '../services/functions';
 import FoodRecipes from './FoodRecipes';
+import SelectNacionality from './SelectNacionality';
 
 function Nationalities() {
-  const [nationalities, setNationalities] = useState({ meals: [] });
-
-  useEffect(() => {
-    filterByNacionality().then((data) => setNationalities(data));
-  }, []);
   return (
     <div>
       <Header hasProfileIcon hasSearchIcon name="Explore Nationalities" />
-      <select data-testid="explore-by-nationality-dropdown">
-        {nationalities.meals.map(({ strArea }) => (
-          <option data-testid={ `${strArea}-option` } key={ strArea }>{strArea}</option>
-        ))}
-      </select>
-      <FoodRecipes />
+      <SelectNacionality />
+      <section className="recipes">
+        <FoodRecipes />
+      </section>
       <Footer />
     </div>
   );
