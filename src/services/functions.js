@@ -181,3 +181,11 @@ export const saveFavorite = (data) => {
   const newFavorites = [...favorites, data];
   localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
 };
+
+export const getEmbed = (strYoutube) => {
+  const finalUrl = strYoutube.split('v=')[1];
+  const initialUrl = 'https://www.youtube.com/embed/';
+  const embedUrl = initialUrl.concat(finalUrl);
+  console.log(embedUrl);
+  return embedUrl;
+};

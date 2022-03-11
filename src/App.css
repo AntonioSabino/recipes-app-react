@@ -31,6 +31,12 @@ a {
   margin-bottom: 70px;
 }
 
+.details-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 img {
   max-width: 100px;
 }
@@ -49,6 +55,7 @@ img {
 
 .start-recipe {
   bottom: 0;
+  left: 7.5%;
   position: fixed;
 }
 
@@ -149,6 +156,10 @@ img {
   background-color: #6ce34f;
 }
 
+.ingredients-ul {
+  width: 100%;
+}
+
 .ingredients-ul li {
   background-color: #e5e5e5;
   list-style: none;
@@ -166,6 +177,19 @@ img {
 }
 
 .detail-img {
-  max-width: none;
+  max-width: 800px;
   width: 100%;
+}
+
+.details-info {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.details-info button {
+  background-color: transparent;
+  border: none;
 }
