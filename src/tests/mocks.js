@@ -16,3 +16,6 @@ export const PATH = {
   profile: '/profile',
   drinkDetails: 'drinks/15997',
 };
+
+export const RADIOS = ['ingredient-search-radio',
+  'name-search-radio', 'first-letter-search-radio'];
