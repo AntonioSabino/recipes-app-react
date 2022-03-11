@@ -25,7 +25,8 @@ const Login = () => {
   };
 
   return (
-    <form>
+    <form className="login">
+      <h1>Login</h1>
       <label htmlFor="email">
         Email
         <input
