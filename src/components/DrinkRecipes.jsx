@@ -12,6 +12,7 @@ function DrinkRecipes() {
           to={ `/drinks/${drink.idDrink}` }
           data-testid={ String(index).concat('-recipe-card') }
           key={ String(index).concat('-recipe-card') }
+          className="recipe-card"
         >
           <img
             data-testid={ String(index).concat('-card-img') }
