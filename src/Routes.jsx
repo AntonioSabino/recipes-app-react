@@ -34,14 +34,10 @@ const Routes = () => (
     <Route exact path="/favorite-recipes" component={ Favorite } />
     <Route exact path="/foods/:id" component={ FoodDetails } />
     <Route exact path="/drinks/:id" component={ DrinkDetails } />
+    <Route exact path="/foods/:id/in-progress" component={ FoodInProgress } />
     <Route
       exact
-      path="/foods/:id-da-receita/in-progress"
-      component={ FoodInProgress }
-    />
-    <Route
-      exact
-      path="/drinks/:id-da-receita/in-progress"
+      path="/drinks/:id/in-progress"
       component={ DrinkInProgress }
     />
     <Route path="*" component={ NotFound } />

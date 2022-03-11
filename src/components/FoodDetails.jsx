@@ -8,6 +8,7 @@ import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 
 const FoodDetails = ({ match }) => {
+  const { path } = match;
   const mealId = match.params.id;
   const [linkCopied, setLinkCopied] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -85,7 +86,11 @@ const FoodDetails = ({ match }) => {
                 meal[0][ingredient] ? (
                   <li
                     key={ index }
-                    data-testid={ `${index}-ingredient-name-and-measure` }
+                    data-testid={
+                      path === '/foods/:id/in-progress'
+                        ? `${index}-ingredient-step`
+                        : `${index}-ingredient-name-and-measure`
+                    }
                   >
                     {`${meal[0][measures[index]]} - ${meal[0][ingredient]}`}
                   </li>)
