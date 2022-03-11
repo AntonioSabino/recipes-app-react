@@ -16,16 +16,19 @@
   width: 100%;
 }
 
+a {
+  padding-bottom: 10px;
+}
+
 .footer a {
   padding: 5px;
 }
 
 .recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 70px;
-}
-
-a {
-  padding-bottom: 10px;
 }
 
 img {
@@ -122,15 +125,9 @@ img {
   background-color: #c4c4c4;
   border: none;
   margin: 8px;
+  min-width: 25vw;
   padding: 5px;
   text-align: start;
-  min-width: 25vw;
-}
-
-.recipes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .recipe-card {
