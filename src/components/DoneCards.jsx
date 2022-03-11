@@ -3,12 +3,24 @@ import shareIcon from '../images/shareIcon.svg';
 
 function DoneCards() {
   const [doneRecipes, setDoneRecipes] = useState([]);
+  const [linkCopied, setLinkCopied] = useState(false);
+
   useEffect(() => {
     const savedDone = JSON.parse(localStorage.getItem('doneRecipes'));
     setDoneRecipes(savedDone || []);
   }, []);
+
+  const handleShare = ({ id, type }) => {
+    if (type === 'drinks') {
+      navigator.clipboard.writeText(`http://localhost:3000/drinks/${id}`);
+      setLinkCopied(true);
+    } navigator.clipboard.writeText(`http://localhost:3000/foods/${id}`);
+    setLinkCopied(true);
+  };
+
   return (
     <section>
+      { linkCopied && <h5>Link copied!</h5> }
       {doneRecipes.map((recipe, index) => (
         <div key={ recipe.id }>
           <img
@@ -19,11 +31,16 @@ function DoneCards() {
           <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
           <p data-testid={ `${index}-horizontal-name` }>{ recipe.name }</p>
           <p data-testid={ `${index}-horizontal-done-date` }>{ recipe.doneDate }</p>
-          <img
-            src={ shareIcon }
-            alt="share icon"
-            data-testid={ `${index}-horizontal-share-btn` }
-          />
+          <button
+            type="button"
+            onClick={ () => handleShare(recipe) }
+          >
+            <img
+              src={ shareIcon }
+              alt="share icon"
+              data-testid={ `${index}-horizontal-share-btn` }
+            />
+          </button>
           <p data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }>
             { recipe.tags[0] }
           </p>
