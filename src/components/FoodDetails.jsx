@@ -37,8 +37,6 @@ const FoodDetails = ({ match }) => {
     setIsFavorite(getFavoriteIds().some((id) => id === mealId));
   }, [mealId]);
 
-  console.log(recommendedDrinks);
-
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
     const info = { category: meal[0].strCategory,
@@ -60,6 +58,7 @@ const FoodDetails = ({ match }) => {
             data-testid="recipe-photo"
             src={ meal[0].strMealThumb }
             alt={ meal[0].strMeal }
+            className="detail-img"
           />
           <h4 data-testid="recipe-title">{meal[0].strMeal}</h4>
           <button
@@ -80,7 +79,7 @@ const FoodDetails = ({ match }) => {
             />
           </button>
           <p data-testid="recipe-category">{meal[0].strCategory}</p>
-          <ul>
+          <ul className="ingredients-ul">
             {
               ingredients.map((ingredient, index) => (
                 meal[0][ingredient] ? (
@@ -98,7 +97,9 @@ const FoodDetails = ({ match }) => {
               ))
             }
           </ul>
-          <p data-testid="instructions">{meal[0].strInstructions}</p>
+          <p className="instructions" data-testid="instructions">
+            {meal[0].strInstructions}
+          </p>
           <iframe
             title={ meal[0].strYoutube }
             width={ 420 }

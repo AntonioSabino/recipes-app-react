@@ -13,7 +13,7 @@ function Header(props) {
     setShowInput(!showInput);
   };
   return (
-    <header>
+    <header className="header">
       { hasProfileIcon
         && (
           <Link to="/profile">

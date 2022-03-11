@@ -59,6 +59,7 @@ const DrinkDetails = ({ match }) => {
             data-testid="recipe-photo"
             src={ drink[0].strDrinkThumb }
             alt={ drink[0].strDrink }
+            className="detail-img"
           />
           <h4 data-testid="recipe-title">{drink[0].strDrink}</h4>
           <button onClick={ handleShare } type="button" data-testid="share-btn">
@@ -75,7 +76,7 @@ const DrinkDetails = ({ match }) => {
             />
           </button>
           <p data-testid="recipe-category">{drink[0].strAlcoholic}</p>
-          <ul>
+          <ul className="ingredients-ul">
             {
               ingredients.map((ingredient, index) => (
                 drink[0][ingredient] ? (
@@ -93,7 +94,9 @@ const DrinkDetails = ({ match }) => {
               ))
             }
           </ul>
-          <p data-testid="instructions">{drink[0].strInstructions}</p>
+          <p className="instructions" data-testid="instructions">
+            {drink[0].strInstructions}
+          </p>
           <ul className="recommended-carrocel">
             {
               recommendedMeals.map((meal, index) => (

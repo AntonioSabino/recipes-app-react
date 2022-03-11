@@ -32,7 +32,7 @@ function Categories({ categories, isDrink }) {
     : handleClick(foodCategory));
 
   return (
-    <section>
+    <section className="categories-container">
       <button
         type="button"
         data-testid="All-category-filter"
