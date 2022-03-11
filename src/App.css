@@ -36,3 +36,43 @@ img {
   bottom: 0;
   position: fixed;
 }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+
+.login input {
+  font-size: 20px;
+  width: 85%;
+}
+
+.login h1 {
+  margin-bottom: 5vh;
+}
+
+.bottom-btn {
+  background-color: #6CE34F;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 10vh auto 0;
+  padding: 15px 0;
+  transition: 0.5s;
+  width: 85%;
+}
+
+.bottom-btn:disabled {
+  background-color: transparent;
+  border: 2px solid #6CE34F;
+  color: #6CE34F;
+}
+
+.bottom-btn:hover {
+  opacity: 0.6;
+}

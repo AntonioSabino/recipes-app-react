@@ -28,7 +28,6 @@ const Login = () => {
     <form className="login">
       <h1>Login</h1>
       <label htmlFor="email">
-        Email
         <input
           type="email"
           name="email"
@@ -36,11 +35,10 @@ const Login = () => {
           defaultValue={ email }
           onChange={ ({ target }) => setEmail(target.value) }
           data-testid="email-input"
-          placeholder="Digite seu email"
+          placeholder="Email"
         />
       </label>
       <label htmlFor="password">
-        Senha
         <input
           type="password"
           name="password"
@@ -48,11 +46,12 @@ const Login = () => {
           defaultValue={ password }
           onChange={ ({ target }) => setPassword(target.value) }
           data-testid="password-input"
-          placeholder="Digite sua senha"
+          placeholder="Password"
         />
       </label>
 
       <button
+        className="bottom-btn"
         type="button"
         data-testid="login-submit-btn"
         disabled={ validateButton() }
