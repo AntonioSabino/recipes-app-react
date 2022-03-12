@@ -18,9 +18,11 @@ describe('Teste a página de receitas (Foods)', () => {
     expect(foodsTitle).toBeInTheDocument();
   });
 
-  test.only('Teste se há 12 imagens de receitas', async () => {
+  test('Teste se há 12 imagens de receitas', async () => {
     const { history } = renderWithRouter(<App />);
     history.push('/foods');
+    const foodsTitle = await screen.findByRole('heading', { name: 'Foods' });
+    expect(foodsTitle).toBeInTheDocument();
     const fstImage = await screen.findByTestId('0-recipe-card');
     expect(fstImage).toBeInTheDocument();
     for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
@@ -28,17 +30,16 @@ describe('Teste a página de receitas (Foods)', () => {
       const image = screen.getByTestId(strTest);
       expect(image).toBeInTheDocument();
     }
-  });
-
-  test('Teste os botões de categorias', async () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/foods');
-    const firstBtn = await screen.findByTestId(`${FOOD_BTNS[0]}-category-filter`);
-    expect(firstBtn).toBeInTheDocument();
-    for (let i = 1; i < FOOD_BTNS.length; i += 1) {
-      const strTest = `${FOOD_BTNS[i]}-category-filter`;
-      const filterBtn = screen.getByTestId(strTest);
-      expect(filterBtn).toBeInTheDocument();
-    }
+    screen.findByTestId(`${FOOD_BTNS[0]}-category-filter`).then((firstBtn) => {
+      expect(firstBtn).toBeInTheDocument();
+      for (let i = 1; i < FOOD_BTNS.length; i += 1) {
+        const strTest = `${FOOD_BTNS[i]}-category-filter`;
+        const filterBtn = screen.getByTestId(strTest);
+        expect(filterBtn).toBeInTheDocument();
+      }
+    });
+    userEvent.click(screen.getByTestId('Beef-category-filter'));
+    const recipeImages = await screen.findAllByAltText('recipe');
+    expect(recipeImages).toHaveLength(NUMB_OF_RECIPES);
   });
 });
