@@ -19,3 +19,6 @@ export const PATH = {
 
 export const RADIOS = ['ingredient-search-radio',
   'name-search-radio', 'first-letter-search-radio'];
+
+export const DONE_BTNS = ['All', 'Food', 'Drinks'];
+export const DONE_DATATESTS = ['all-btn', 'food-btn', 'drink-btn'];
