@@ -9,7 +9,7 @@ describe('Teste a página Profile', () => {
     const { history } = renderWithRouter(<App />);
     history.push(PATH.profile);
     const title = screen.getAllByRole('heading', { level: 1 });
-    expect(title).toHaveTextContent('Profile');
+    expect(title[0]).toHaveTextContent('Profile');
   });
 
   test('Teste os links de navegação', () => {

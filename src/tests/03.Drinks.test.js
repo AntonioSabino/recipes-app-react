@@ -27,8 +27,14 @@ describe('Teste a página de receitas (Foods)', () => {
     history.push('/drinks');
     const searchIcon = screen.getAllByRole('button');
     userEvent.click(searchIcon[0]);
-    expect(screen.getByTestId('exec-search-btn')).toHaveTextContent('Search');
-    expect(screen.getByTestId('search-input')).toBeInTheDocument();
+    const execBtn = screen.getByTestId('exec-search-btn');
+    expect(execBtn).toHaveTextContent('Search');
+    const searchInput = screen.getByTestId('search-input');
+    expect(searchInput).toBeInTheDocument();
+    userEvent.type(searchInput, 'shake');
+    const fstRadio = screen.getByTestId(RADIO[0]);
+    userEvent.click(fstRadio);
+    userEvent.click(execBtn);
     RADIOS.forEach((dataTest) => {
       expect(screen.getByTestId(dataTest)).toBeInTheDocument();
     });

@@ -20,21 +20,24 @@ describe('Teste a página Explore Nationalities', () => {
     expect(combobox).toBeInTheDocument();
   });
 
-  test('Teste se há 12 imagens de receitas', () => {
+  test('Teste se há 12 imagens de receitas', async () => {
     const { history } = renderWithRouter(<App />);
     history.push(PATH.nationalities);
-    for (let i = 0; i < NUMB_OF_RECIPES; i += 1) {
+    const fstTest = '0-recipe-card';
+    const fstImage = await screen.findByTestId(fstTest);
+    expect(fstImage).toBeInTheDocument();
+    for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
       const strTest = `${i}-recipe-card`;
-      const image = screen.getAllByTestId(strTest);
+      const image = screen.getByTestId(strTest);
       expect(image).toBeInTheDocument();
     }
   });
 
-  test('Teste se redireciona para detalhes ao clicar em uma receita', () => {
+  test('Teste se redireciona para detalhes ao clicar em uma receita', async () => {
     const { history } = renderWithRouter(<App />);
     history.push(PATH.nationalities);
     const strTest = '0-recipe-card';
-    const recipe = screen.queryByTestId(strTest);
+    const recipe = await screen.findByTestId(strTest);
     userEvent.click(recipe);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/foods/52977');
