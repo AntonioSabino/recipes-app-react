@@ -6,7 +6,7 @@ import renderWithRouter from '../renderWithRouter';
 import { FOOD_BTNS, NUMB_OF_RECIPES } from './mocks';
 
 describe('Teste a página de receitas (Foods)', () => {
-  test('Teste o Login redireciona para Foods', () => {
+  test('Teste o Login redireciona para Foods', async () => {
     renderWithRouter(<App />);
     const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Password');
@@ -14,26 +14,30 @@ describe('Teste a página de receitas (Foods)', () => {
     userEvent.type(emailInput, 'email@email.com');
     userEvent.type(passwordInput, 'naouseessasenha');
     userEvent.click(button);
-    const foodsTitle = screen.getByRole('heading', { level: 1 });
+    const foodsTitle = await screen.findByRole('heading', { name: 'Foods' });
     expect(foodsTitle).toBeInTheDocument();
   });
 
-  test('Teste se há 12 imagens de receitas', () => {
+  test.only('Teste se há 12 imagens de receitas', async () => {
     const { history } = renderWithRouter(<App />);
     history.push('/foods');
-    for (let i = 0; i < NUMB_OF_RECIPES; i += 1) {
+    const fstImage = await screen.findByTestId('0-recipe-card');
+    expect(fstImage).toBeInTheDocument();
+    for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
       const strTest = `${i}-recipe-card`;
-      const image = screen.getAllByTestId(strTest);
+      const image = screen.getByTestId(strTest);
       expect(image).toBeInTheDocument();
     }
   });
 
-  test('Teste os botões de categorias', () => {
+  test('Teste os botões de categorias', async () => {
     const { history } = renderWithRouter(<App />);
     history.push('/foods');
-    for (let i = 0; i < FOOD_BTNS.length; i += 1) {
+    const firstBtn = await screen.findByTestId(`${FOOD_BTNS[0]}-category-filter`);
+    expect(firstBtn).toBeInTheDocument();
+    for (let i = 1; i < FOOD_BTNS.length; i += 1) {
       const strTest = `${FOOD_BTNS[i]}-category-filter`;
-      const filterBtn = screen.getAllByTestId(strTest);
+      const filterBtn = screen.getByTestId(strTest);
       expect(filterBtn).toBeInTheDocument();
     }
   });
