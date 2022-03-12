@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import { PATH } from './mocks';
+import { NUMB_OF_RECIPES, PATH } from './mocks';
 
 describe('Teste a página Explore Ingredients', () => {
   test('Teste o título Explore Ingredients', () => {
@@ -12,30 +12,36 @@ describe('Teste a página Explore Ingredients', () => {
     expect(title[0]).toHaveTextContent('Explore Ingredients');
   });
 
-  test('Teste se há 12 cards', () => {
+  test('Teste se há 12 cards', async () => {
     const { history } = renderWithRouter(<App />);
     history.push(PATH.ingredients);
-    for (let i = 0; i < NUMB_OF_RECIPES; i += 1) {
+    const fstTest = await screen.findByTestId('0-ingredient-card');
+    expect(fstTest).toBeInTheDocument();
+    for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
       const testidCard = `${i}-ingredient-card`;
       const card = screen.getByTestId(testidCard);
       expect(card).toBeInTheDocument();
     }
   });
 
-  test('Teste se cada card tem uma imagem', () => {
+  test('Teste se cada card tem uma imagem', async () => {
     const { history } = renderWithRouter(<App />);
     history.push(PATH.ingredients);
-    for (let i = 0; i < NUMB_OF_RECIPES; i += 1) {
+    const fstTest = await screen.findByTestId('0-card-img');
+    expect(fstTest).toBeInTheDocument();
+    for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
       const testidCard = `${i}-card-img`;
       const cardImg = screen.getByTestId(testidCard);
       expect(cardImg).toBeInTheDocument();
     }
   });
 
-  test('Teste se cada card tem um título', () => {
+  test('Teste se cada card tem um título', async () => {
     const { history } = renderWithRouter(<App />);
     history.push(PATH.ingredients);
-    for (let i = 0; i < NUMB_OF_RECIPES; i += 1) {
+    const fstTest = await screen.findByTestId('0-card-name');
+    expect(fstTest).toBeInTheDocument();
+    for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
       const testidCard = `${i}-card-name`;
       const cardName = screen.getByTestId(testidCard);
       expect(cardName).toBeInTheDocument();
