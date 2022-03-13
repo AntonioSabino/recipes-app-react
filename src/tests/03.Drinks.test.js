@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
@@ -38,5 +38,41 @@ describe('Teste a página de receitas (Foods)', () => {
     RADIOS.forEach((dataTest) => {
       expect(screen.getByTestId(dataTest)).toBeInTheDocument();
     });
+  });
+  test('Teste a barra de busca', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/drinks');
+    const searchIcon = screen.getAllByRole('button', { name: 'search-icon' });
+    act(() => {
+      userEvent.click(searchIcon[0]);
+    });
+    const searchInput = screen.getByTestId('search-input');
+    act(() => {
+      userEvent.type(searchInput, 'Gin');
+    });
+    const radioInput = screen.getByTestId('ingredient-search-radio');
+    act(() => {
+      userEvent.click(radioInput);
+      userEvent.click(screen.getByTestId('exec-search-btn'));
+    });
+    expect(searchInput).toBeInTheDocument();
+  });
+  test('Teste as categorias', async () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/drinks');
+    const foodsTitle = await screen.findByRole('heading', { name: 'Drinks' });
+    expect(foodsTitle).toBeInTheDocument();
+    const fstImage = await screen.findByTestId('0-recipe-card');
+    expect(fstImage).toBeInTheDocument();
+    for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
+      const strTest = `${i}-recipe-card`;
+      const image = screen.getByTestId(strTest);
+      expect(image).toBeInTheDocument();
+    }
+    act(() => {
+      userEvent.click(screen.getByTestId('Cocktail-category-filter'));
+    });
+    const recipeImages = await screen.findAllByAltText('recipe');
+    expect(recipeImages).toHaveLength(NUMB_OF_RECIPES);
   });
 });

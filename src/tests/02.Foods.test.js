@@ -1,19 +1,23 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import { FOOD_BTNS, NUMB_OF_RECIPES } from './mocks';
+import { FOOD_BTNS, NUMB_OF_RECIPES, RADIOS } from './mocks';
 
 describe('Teste a página de receitas (Foods)', () => {
   test('Teste o Login redireciona para Foods', async () => {
     renderWithRouter(<App />);
     const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Password');
-    const button = screen.getByRole('button');
-    userEvent.type(emailInput, 'email@email.com');
-    userEvent.type(passwordInput, 'naouseessasenha');
-    userEvent.click(button);
+    act(() => {
+      userEvent.type(emailInput, 'email@email.com');
+      userEvent.type(passwordInput, 'naouseessasenha');
+    });
+    act(() => {
+      const button = screen.getByTestId('login-submit-btn');
+      userEvent.click(button);
+    });
     const foodsTitle = await screen.findByRole('heading', { name: 'Foods' });
     expect(foodsTitle).toBeInTheDocument();
   });
@@ -38,8 +42,32 @@ describe('Teste a página de receitas (Foods)', () => {
         expect(filterBtn).toBeInTheDocument();
       }
     });
-    userEvent.click(screen.getByTestId('Beef-category-filter'));
+    act(() => {
+      userEvent.click(screen.getByTestId('Beef-category-filter'));
+    });
     const recipeImages = await screen.findAllByAltText('recipe');
     expect(recipeImages).toHaveLength(NUMB_OF_RECIPES);
+  });
+  test('Teste a barra de busca', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/foods');
+    const searchIcon = screen.getAllByRole('button', { name: 'search-icon' });
+    act(() => {
+      userEvent.click(searchIcon[0]);
+    });
+    const searchInput = screen.getByTestId('search-input');
+    act(() => {
+      userEvent.type(searchInput, 'a');
+    });
+    RADIOS.forEach((datatest) => {
+      const radioInput = screen.getByTestId(datatest);
+      act(() => {
+        userEvent.click(radioInput);
+      });
+    });
+    act(() => {
+      userEvent.click(screen.getByTestId('exec-search-btn'));
+    });
+    expect(searchInput).toBeInTheDocument();
   });
 });

@@ -44,7 +44,11 @@ describe('Teste a página Explore Ingredients', () => {
 
   test('Teste se cada card tem um título', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/drinks/ingredients');
+    history.push('/explore/drinks');
+    const byIngredient = screen.getByTestId('explore-by-ingredient');
+    act(() => {
+      userEvent.click(byIngredient);
+    });
     const fstTest = await screen.findByTestId('0-card-name');
     expect(fstTest).toBeInTheDocument();
     for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {

@@ -16,6 +16,9 @@ import {
   defaultFetch,
   saveFavorite,
   getFavoriteIds,
+  filterByNacionality,
+  filterByCategories,
+  fetchCategories,
 } from '../services/functions';
 import { NUMB_OF_RECIPES, NUMB_OF_TYPES } from './mocks';
 
@@ -115,6 +118,10 @@ describe('Testes das demais funções da pasta services', () => {
     filterByNacionality('All').then(() => {
       expect(fetchMeals).toHaveBeenCalled();
     });
+    filterByNacionality('Italian').then((data) => {
+      expect(defaultFetch).toHaveBeenCalled();
+      expect(data).toHaveLength(NUMB_OF_RECIPES);
+    });
   });
 });
 
@@ -123,5 +130,39 @@ describe('Testes do arquivo functions - Parte 3 de 3', () => {
     const mockIds = ['0', '1', '2'];
     saveFavorite(mockIds);
     expect(getFavoriteIds()).toEqual(mockIds);
+  });
+  test('Teste o erro do endpoint da função defaultFetch', () => {
+    defaultFetch('www').then((data) => {
+      expect(data).toBeFalsy();
+    });
+  });
+  test('Teste a função getRecipeIng para comida', async () => {
+    const ingredients = await getRecipeIng();
+    expect(ingredients).toHaveLength(NUMB_OF_RECIPES);
+  });
+  test('Teste a função filterByCategories, com categorias iguais', () => {
+    filterMealByType('Seafood', 'Seafood').then((result) => {
+      expect(fetchMeals).toHaveBeenCalled();
+      expect(result).toHaveLength(NUMB_OF_RECIPES);
+    });
+    filterDrinkByType('Ordinary_Drink', 'Ordinary_Drink').then((drinks) => {
+      expect(fetchDrinks).toHaveBeenCalled();
+      expect(drinks).toHaveLength(NUMB_OF_RECIPES);
+    });
+  });
+  test('Teste o erro da função filterByCategories', () => {
+    filterByCategories().then((data) => {
+      expect(data).toHaveLength(0);
+    });
+  });
+  test('Teste o erro da função fetchDrinks', () => {
+    fetchDrinks().then((data) => {
+      expect(data).toHaveLength(0);
+    });
+  });
+  test('Teste o erro da função fetchCategories', () => {
+    fetchCategories().then((data) => {
+      expect(data).toHaveLength(0);
+    });
   });
 });
