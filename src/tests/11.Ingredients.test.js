@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react';
+import { act, findAllByText, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
@@ -22,6 +23,11 @@ describe('Teste a página Explore Ingredients', () => {
       const card = screen.getByTestId(testidCard);
       expect(card).toBeInTheDocument();
     }
+    act(() => {
+      userEvent.click(fstTest);
+    });
+    const foodTitle = await findAllByText('Foods');
+    expect(foodTitle[0]).toBeInTheDocument();
   });
 
   test('Teste se cada card tem uma imagem', async () => {
@@ -38,7 +44,7 @@ describe('Teste a página Explore Ingredients', () => {
 
   test('Teste se cada card tem um título', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push(PATH.ingredients);
+    history.push('/drinks/ingredients');
     const fstTest = await screen.findByTestId('0-card-name');
     expect(fstTest).toBeInTheDocument();
     for (let i = 1; i < NUMB_OF_RECIPES; i += 1) {
