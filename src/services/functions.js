@@ -32,7 +32,7 @@ export const fetchDrinks = async (input, type) => {
   }
 };
 
-const fetchCategories = async (name) => {
+export const fetchCategories = async (name) => {
   const endpoint = `https://www.the${name}db.com/api/json/v1/1/list.php?c=list`;
   try {
     const response = await fetch(endpoint);
@@ -62,7 +62,7 @@ export const updateCategory = (newType, prevType) => {
   return newType;
 };
 
-const filterByCategories = async (name, category) => {
+export const filterByCategories = async (name, category) => {
   const endpoint = `https://www.the${name}db.com/api/json/v1/1/filter.php?c=${category}`;
   try {
     const response = await fetch(endpoint);
@@ -113,7 +113,7 @@ export const getSavedEmail = () => {
   return user ? JSON.parse(user).email : 'email@xyz.com';
 };
 
-const defaultFetch = async (endpoint) => {
+export const defaultFetch = async (endpoint) => {
   try {
     const response = await fetch(endpoint);
     const data = await response.json();
