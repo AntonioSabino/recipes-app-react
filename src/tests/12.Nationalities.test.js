@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
@@ -37,8 +37,12 @@ describe('Teste a página Explore Nationalities', () => {
     const { history } = renderWithRouter(<App />);
     history.push(PATH.nationalities);
     const strTest = '0-recipe-card';
+    const portugueseOption = await screen.findAllByTestId('Portuguese-option');
+    expect(portugueseOption[0]).toBeInTheDocument();
     const recipe = await screen.findByTestId(strTest);
-    userEvent.click(recipe);
+    act(() => {
+      userEvent.click(recipe);
+    });
     const { location: { pathname } } = history;
     expect(pathname).toBe('/foods/52977');
   });
