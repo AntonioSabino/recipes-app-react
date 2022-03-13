@@ -17,6 +17,7 @@ export const PATH = {
   profile: '/profile',
   drinkDetails: 'drinks/15997',
   done: '/done-recipes',
+  favorite: '/favorite-recipes',
 };
 
 export const RADIOS = ['ingredient-search-radio',

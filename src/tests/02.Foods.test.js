@@ -70,4 +70,18 @@ describe('Teste a página de receitas (Foods)', () => {
     });
     expect(searchInput).toBeInTheDocument();
   });
+  test('Teste os botões de categorias', async () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/foods');
+    const foodsTitle = await screen.findByRole('heading', { name: 'Foods' });
+    expect(foodsTitle).toBeInTheDocument();
+    const recipeImages = await screen.findAllByAltText('recipe');
+    expect(recipeImages).toHaveLength(NUMB_OF_RECIPES);
+    screen.findByTestId('Goat-category-filter').then((goatBtn) => {
+      expect(goatBtn).toBeInTheDocument();
+    });
+    act(() => {
+      userEvent.click(screen.getByTestId('Beef-category-filter'));
+    });
+  });
 });
