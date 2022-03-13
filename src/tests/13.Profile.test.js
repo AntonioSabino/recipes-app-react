@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
@@ -21,5 +22,9 @@ describe('Teste a página Profile', () => {
     expect(favorite).toHaveTextContent('Favorite Recipes');
     const logout = screen.getByTestId('profile-logout-btn');
     expect(logout).toHaveTextContent('Logout');
+    act(() => {
+      userEvent.click(logout);
+    });
+    expect(logout).not.toBeInTheDocument();
   });
 });
