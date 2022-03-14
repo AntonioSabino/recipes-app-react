@@ -134,6 +134,10 @@ img {
   border: none;
 }
 
+.search-bar button {
+  max-width: 100px;
+}
+
 .categories-container button {
   background-color: #c4c4c4;
   border: none;
@@ -206,8 +210,4 @@ img {
 .search-bar .search-radios {
   display: flex;
   gap: 25px;
-}
-
-.search-bar button {
-  max-width: 100px;
 }
