@@ -8,10 +8,10 @@ function Explore() {
     <div>
       <Header hasProfileIcon name="Explore" />
       <section className="explore-container">
-        <Link data-testid="explore-foods" to="/explore/foods">
+        <Link className="explore-btn" data-testid="explore-foods" to="/explore/foods">
           <h5>Explore Foods</h5>
         </Link>
-        <Link data-testid="explore-drinks" to="/explore/drinks">
+        <Link className="explore-btn" data-testid="explore-drinks" to="/explore/drinks">
           <h5>Explore Drinks</h5>
         </Link>
       </section>
