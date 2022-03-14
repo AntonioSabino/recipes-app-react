@@ -38,6 +38,7 @@ function IngredientButtons({ isDrink }) {
           key={ `${index}-card` }
           type="button"
           onClick={ () => handleClick(name) }
+          className="ingredient-btn"
         >
           <img
             data-testid={ String(index).concat('-card-img') }
