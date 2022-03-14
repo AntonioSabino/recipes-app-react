@@ -46,7 +46,7 @@ function SearchBar() {
   };
 
   return (
-    <form>
+    <form className="search-bar">
       <input
         type="text"
         placeholder="Search Recipe"
@@ -54,7 +54,7 @@ function SearchBar() {
         value={ inputValue }
         onChange={ ({ target }) => setInputValue(target.value) }
       />
-      <div>
+      <div className="search-radios">
         <label htmlFor="Ingredients">
           <input
             data-testid="ingredient-search-radio"
