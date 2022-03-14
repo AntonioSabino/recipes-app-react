@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchDetails, getEmbed, getFavoriteIds,
-  saveFavorite } from '../services/functions';
+import {
+  fetchDetails, getEmbed, getFavoriteIds,
+  saveFavorite,
+} from '../services/functions';
 import AppContext from '../context/AppContext';
 import StartRecipe from './StartRecipe';
 import whiteHeart from '../images/whiteHeartIcon.svg';
@@ -40,13 +42,15 @@ const FoodDetails = ({ match }) => {
 
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
-    const info = { category: meal[0].strCategory,
+    const info = {
+      category: meal[0].strCategory,
       nationality: meal[0].strArea,
       id: mealId,
       type: 'food',
       alcoholicOrNot: '',
       name: meal[0].strMeal,
-      image: meal[0].strMealThumb };
+      image: meal[0].strMealThumb,
+    };
     saveFavorite(info);
   };
 
@@ -54,7 +58,7 @@ const FoodDetails = ({ match }) => {
     loading ? <h2>Carregando...</h2>
       : (
         <div className="details-container">
-          { linkCopied && <h5>Link copied!</h5> }
+          {linkCopied && <h5>Link copied!</h5>}
           <img
             data-testid="recipe-photo"
             src={ meal[0].strMealThumb }
@@ -94,7 +98,15 @@ const FoodDetails = ({ match }) => {
                         : `${index}-ingredient-name-and-measure`
                     }
                   >
-                    {`${meal[0][measures[index]]} - ${meal[0][ingredient]}`}
+                    {
+                      path === '/foods/:id/in-progress' ? (
+                        <label htmlFor="ingrediente">
+                          <input type="checkbox" name="ingrediente" id="ingrediente" />
+                          {` - ${meal[0][measures[index]]} - ${meal[0][ingredient]}`}
+                        </label>
+                      )
+                        : `${meal[0][measures[index]]} - ${meal[0][ingredient]}`
+                    }
                   </li>)
                   : ''
               ))
@@ -122,7 +134,7 @@ const FoodDetails = ({ match }) => {
                     src={ drink.strDrinkThumb }
                   />
                   <h4 data-testid={ `${index}-recomendation-title` }>
-                    { drink.strDrink }
+                    {drink.strDrink}
                   </h4>
                 </li>
               ))
