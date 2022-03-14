@@ -13,26 +13,28 @@ function Header(props) {
     setShowInput(!showInput);
   };
   return (
-    <header className="header">
-      { hasProfileIcon
-        && (
-          <Link to="/profile">
-            <img src={ profileIcon } alt="profile-icon" data-testid="profile-top-btn" />
-          </Link>
+    <>
+      <header className="header">
+        { hasProfileIcon
+          && (
+            <Link to="/profile">
+              <img src={ profileIcon } alt="profile-icon" data-testid="profile-top-btn" />
+            </Link>
 
-        )}
-      <h1 data-testid="page-title">{ name }</h1>
-      { hasSearchIcon
-        && (
-          <button type="button" onClick={ handleInput }>
-            <img src={ searchIcon } alt="search-icon" data-testid="search-top-btn" />
-          </button>
-        )}
+          )}
+        <h1 data-testid="page-title">{ name }</h1>
+        { hasSearchIcon
+          && (
+            <button type="button" onClick={ handleInput }>
+              <img src={ searchIcon } alt="search-icon" data-testid="search-top-btn" />
+            </button>
+          )}
+      </header>
       {showInput
         && (
           <SearchBar />
         )}
-    </header>
+    </>
   );
 }
 
