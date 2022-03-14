@@ -193,3 +193,21 @@ img {
   justify-content: space-evenly;
   width: 100%;
 }
+
+.search-bar {
+  box-shadow: 2px 2px #c4c4c4;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 5%;
+  width: 100%;
+}
+
+.search-bar .search-radios {
+  display: flex;
+  gap: 25px;
+}
+
+.search-bar button {
+  max-width: 100px;
+}
