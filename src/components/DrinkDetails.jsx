@@ -90,7 +90,16 @@ const DrinkDetails = ({ match }) => {
                         : `${index}-ingredient-name-and-measure`
                     }
                   >
-                    {`${drink[0][measures[index]]} - ${drink[0][ingredient]}`}
+                    {
+                      path === '/drinks/:id/in-progress' ? (
+                        <label htmlFor="ingrediente">
+                          <input type="checkbox" name="ingrediente" id="ingrediente" />
+                          {` - ${drink[0][measures[index]]} - ${drink[0][ingredient]}`}
+                        </label>
+                      )
+                        : `${drink[0][measures[index]]} - ${drink[0][ingredient]}`
+                    }
+
                   </li>)
                   : ''
               ))
