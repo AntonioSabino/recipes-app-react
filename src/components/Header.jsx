@@ -12,6 +12,7 @@ function Header(props) {
   const handleInput = () => {
     setShowInput(!showInput);
   };
+
   return (
     <>
       <header className="header">
