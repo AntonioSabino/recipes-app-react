@@ -141,7 +141,7 @@ img {
 .explore-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;  
+  gap: 20px;
   min-height: 60vh;
   padding: 5vh 5vw;
 }
@@ -149,7 +149,7 @@ img {
 .explore-nav {
   display: flex;
   flex-direction: column;
-  gap: 20px;  
+  gap: 20px;
   min-height: 60vh;
   padding: 5vh 5vw;
 }
