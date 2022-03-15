@@ -55,26 +55,25 @@ const FoodDetails = ({ match }) => {
   };
 
   return (
-    loading ? <h2>Carregando...</h2>
-      : (
-        <div className="details-container">
-          <RecipeBase
-            path={ path }
-            linkCopied={ linkCopied }
-            ingredients={ ingredients }
-            measures={ measures }
-            handleShare={ handleShare }
-            handleFavorite={ handleFavorite }
-            meal={ meal }
-            isFavorite={ isFavorite }
-          />
-          <FoodVideo meal={ meal[0] } />
-          <Recommendation path={ path } />
-          <Link to={ `/foods/${mealId}/in-progress` }>
-            <StartRecipe id={ mealId } />
-          </Link>
-        </div>
-      )
+    loading ? <h2>Carregando...</h2> : (
+      <div className="details-container">
+        <RecipeBase
+          path={ path }
+          linkCopied={ linkCopied }
+          ingredients={ ingredients }
+          measures={ measures }
+          handleShare={ handleShare }
+          handleFavorite={ handleFavorite }
+          meal={ meal }
+          isFavorite={ isFavorite }
+        />
+        <FoodVideo meal={ meal[0] } />
+        <Recommendation path={ path } />
+        <Link to={ `/foods/${mealId}/in-progress` }>
+          <StartRecipe id={ mealId } />
+        </Link>
+      </div>
+    )
   );
 };
 
