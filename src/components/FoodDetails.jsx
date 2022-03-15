@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import {
-  fetchDetails,
-  getFavoriteIds,
-  saveFavorite,
-} from '../services/functions';
+import { fetchDetails, getFavoriteIds } from '../services/functions';
 import StartRecipe from './StartRecipe';
 import RecipeBase from './RecipeBase';
 import FoodVideo from './FoodVideo';
@@ -40,20 +36,6 @@ const FoodDetails = ({ match }) => {
     setIsFavorite(getFavoriteIds().some((id) => id === mealId));
   }, [mealId]);
 
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    const info = {
-      category: meal[0].strCategory,
-      nationality: meal[0].strArea,
-      id: mealId,
-      type: 'food',
-      alcoholicOrNot: '',
-      name: meal[0].strMeal,
-      image: meal[0].strMealThumb,
-    };
-    saveFavorite(info);
-  };
-
   return (
     loading ? <h2>Carregando...</h2> : (
       <div className="details-container">
@@ -63,9 +45,10 @@ const FoodDetails = ({ match }) => {
           ingredients={ ingredients }
           measures={ measures }
           handleShare={ handleShare }
-          handleFavorite={ handleFavorite }
-          meal={ meal }
+          meal={ meal[0] }
+          mealId={ mealId }
           isFavorite={ isFavorite }
+          setIsFavorite={ setIsFavorite }
         />
         <FoodVideo meal={ meal[0] } />
         <Recommendation path={ path } />
