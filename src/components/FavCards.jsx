@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 // import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import AppContext from '../context/AppContext';
 
 function FavCards() {
   const [favRecipes, setFavRecipes] = useState([]);
   const [linkCopied, setLinkCopied] = useState(false);
+  const { doneFilter } = useContext(AppContext);
+
+  const handleFilter = (recipe) => recipe.type === doneFilter || doneFilter === 'All';
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -24,7 +28,7 @@ function FavCards() {
   return (
     <section>
       { linkCopied && <h5>Link copied!</h5> }
-      {favRecipes.map((recipe, index) => (
+      {favRecipes.filter(handleFilter).map((recipe, index) => (
         <div key={ recipe.id }>
 
           { recipe.type === 'food'
