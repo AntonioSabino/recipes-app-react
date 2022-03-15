@@ -1,14 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  fetchDetails, getEmbed, getFavoriteIds,
+  fetchDetails,
+  getFavoriteIds,
   saveFavorite,
 } from '../services/functions';
-import AppContext from '../context/AppContext';
 import StartRecipe from './StartRecipe';
-import whiteHeart from '../images/whiteHeartIcon.svg';
-import blackHeart from '../images/blackHeartIcon.svg';
+import RecipeBase from './RecipeBase';
+import FoodVideo from './FoodVideo';
+import Recommendation from './Recommendation';
 
 const FoodDetails = ({ match }) => {
   const { path } = match;
@@ -19,7 +20,6 @@ const FoodDetails = ({ match }) => {
   const [meal, setMeal] = useState([]);
   const [ingredients, setIngredients] = useState({});
   const [measures, setMeasures] = useState({});
-  const { recommendedDrinks } = useContext(AppContext);
 
   const getIngredients = (thisMeal) => {
     setIngredients(Object.keys(thisMeal).filter((item) => item.includes('Ingredient')));
@@ -58,93 +58,21 @@ const FoodDetails = ({ match }) => {
     loading ? <h2>Carregando...</h2>
       : (
         <div className="details-container">
-          {linkCopied && <h5>Link copied!</h5>}
-          <img
-            data-testid="recipe-photo"
-            src={ meal[0].strMealThumb }
-            alt={ meal[0].strMeal }
-            className="detail-img"
+          <RecipeBase
+            path={ path }
+            linkCopied={ linkCopied }
+            ingredients={ ingredients }
+            measures={ measures }
+            handleShare={ handleShare }
+            handleFavorite={ handleFavorite }
+            meal={ meal }
+            isFavorite={ isFavorite }
           />
-          <div className="details-info">
-            <h4 data-testid="recipe-title">{meal[0].strMeal}</h4>
-            <button
-              type="button"
-              onClick={ handleShare }
-              data-testid="share-btn"
-            >
-              Compartilhar
-            </button>
-            <button
-              type="button"
-              onClick={ handleFavorite }
-            >
-              <img
-                src={ isFavorite ? blackHeart : whiteHeart }
-                alt="heart"
-                data-testid="favorite-btn"
-              />
-            </button>
-            <p data-testid="recipe-category">{meal[0].strCategory}</p>
-          </div>
-          <ul className="ingredients-ul">
-            {
-              ingredients.map((ingredient, index) => (
-                meal[0][ingredient] ? (
-                  <li
-                    key={ index }
-                    data-testid={
-                      path === '/foods/:id/in-progress'
-                        ? `${index}-ingredient-step`
-                        : `${index}-ingredient-name-and-measure`
-                    }
-                  >
-                    {
-                      path === '/foods/:id/in-progress' ? (
-                        <label htmlFor="ingrediente">
-                          <input type="checkbox" name="ingrediente" id="ingrediente" />
-                          {` - ${meal[0][measures[index]]} - ${meal[0][ingredient]}`}
-                        </label>
-                      )
-                        : `${meal[0][measures[index]]} - ${meal[0][ingredient]}`
-                    }
-                  </li>)
-                  : ''
-              ))
-            }
-          </ul>
-          <p className="instructions" data-testid="instructions">
-            {meal[0].strInstructions}
-          </p>
-          <iframe
-            title={ meal[0].strYoutube }
-            width={ 405 }
-            height={ 275 }
-            data-testid="video"
-            src={ getEmbed(meal[0].strYoutube) }
-          />
-          <ul className="recommended-carrocel">
-            {
-              recommendedDrinks.map((drink, index) => (
-                <li
-                  key={ index }
-                  data-testid={ `${index}-recomendation-card` }
-                >
-                  <img
-                    alt={ drink.strDrink }
-                    src={ drink.strDrinkThumb }
-                  />
-                  <h4 data-testid={ `${index}-recomendation-title` }>
-                    {drink.strDrink}
-                  </h4>
-                </li>
-              ))
-            }
-          </ul>
+          <FoodVideo meal={ meal[0] } />
+          <Recommendation path={ path } />
           <Link to={ `/foods/${mealId}/in-progress` }>
             <StartRecipe id={ mealId } />
-
           </Link>
-
         </div>
       )
   );

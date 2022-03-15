@@ -92,8 +92,8 @@ const DrinkDetails = ({ match }) => {
                   >
                     {
                       path === '/drinks/:id/in-progress' ? (
-                        <label htmlFor="ingrediente">
-                          <input type="checkbox" name="ingrediente" id="ingrediente" />
+                        <label htmlFor={ `ingrediente-${index}` }>
+                          <input type="checkbox" id={ `ingrediente-${index}` } />
                           {` - ${drink[0][measures[index]]} - ${drink[0][ingredient]}`}
                         </label>
                       )
