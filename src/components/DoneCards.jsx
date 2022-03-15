@@ -16,7 +16,7 @@ function DoneCards() {
   }, []);
 
   const handleShare = ({ id, type }) => {
-    if (type === 'drinks') {
+    if (type === 'drink') {
       navigator.clipboard.writeText(`http://localhost:3000/drinks/${id}`);
       setLinkCopied(true);
     } navigator.clipboard.writeText(`http://localhost:3000/foods/${id}`);

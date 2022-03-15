@@ -21,7 +21,7 @@ function DoneFilters() {
       </button>
       <button
         type="button"
-        onClick={ () => setDoneFilter('drinks') }
+        onClick={ () => setDoneFilter('drink') }
         data-testid="filter-by-drink-btn"
       >
         Drinks
