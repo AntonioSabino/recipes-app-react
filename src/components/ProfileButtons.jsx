@@ -11,11 +11,18 @@ function ProfileButtons() {
 
   return (
     <section className="profileBtns">
-      <Link to="/done-recipes" data-testid="profile-done-btn">Done Recipes</Link>
-      <Link to="/favorite-recipes" data-testid="profile-favorite-btn">
+      <Link className="profile-btn" to="/done-recipes" data-testid="profile-done-btn">
+        Done Recipes
+      </Link>
+      <Link
+        className="profile-btn"
+        to="/favorite-recipes"
+        data-testid="profile-favorite-btn"
+      >
         Favorite Recipes
       </Link>
       <button
+        className="profile-btn"
         type="button"
         onClick={ handleLogout }
         data-testid="profile-logout-btn"

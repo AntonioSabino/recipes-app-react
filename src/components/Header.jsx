@@ -21,7 +21,6 @@ function Header(props) {
             <Link to="/profile">
               <img src={ profileIcon } alt="profile-icon" data-testid="profile-top-btn" />
             </Link>
-
           )}
         <h1 data-testid="page-title">{ name }</h1>
         { hasSearchIcon

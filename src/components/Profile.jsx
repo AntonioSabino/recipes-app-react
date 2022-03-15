@@ -14,8 +14,10 @@ function Profile() {
   return (
     <div>
       <Header hasProfileIcon name="Profile" />
-      <h4 data-testid="profile-email">{ email }</h4>
-      <ProfileButtons />
+      <div className="profile-container">
+        <h4 data-testid="profile-email">{ email }</h4>
+        <ProfileButtons />
+      </div>
       <Footer />
     </div>
   );
