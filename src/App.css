@@ -135,7 +135,82 @@ img {
 }
 
 .search-bar button {
+  cursor: pointer;
   max-width: 100px;
+}
+
+.explore-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 60vh;
+  padding: 5vh 5vw;
+}
+
+.profileBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 60vh;
+  padding: 5vh 5vw;
+}
+
+.explore-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 60vh;
+  padding: 5vh 5vw;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container h4 {
+  font-size: 30px;
+  padding: 20px 5%;
+}
+
+.profile-btn {
+  background-color: #c4c4c4;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 2px 2px #c4c4c4;
+  cursor: pointer;
+  font-size: 30px;
+  padding: 20px 5%;
+  text-align: start;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.profile-btn:hover {
+  background-color: #6ce34f;
+}
+
+.ingredient-btn {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.ingredient-btn:hover {
+  background-color: #6ce34f;
+}
+
+.explore-btn {
+  border-radius: 6px;
+  box-shadow: 2px 2px #c4c4c4;
+  cursor: pointer;
+  font-size: 30px;
+  padding: 20px 5%;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.explore-btn:hover {
+  background-color: #6ce34f;
 }
 
 .categories-container button {
@@ -153,12 +228,20 @@ img {
   background-color: #6ce34f;
 }
 
+.nations-select {
+  font-size: 20px;
+  line-height: 25px;
+  margin: 10px 5vw;
+  width: 90%;
+}
+
 .recipe-card {
   box-shadow: 2px 2px #c4c4c4;
   cursor: pointer;
   margin: 5px;
   text-align: center;
   transition: 0.4s;
+  width: 40vw;
 }
 
 .recipe-card:hover {
@@ -210,4 +293,8 @@ img {
 .search-bar .search-radios {
   display: flex;
   gap: 25px;
+}
+
+.search-bar .search-radios label {
+  cursor: pointer;
 }

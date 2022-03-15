@@ -20,6 +20,7 @@ function SelectNacionality() {
     <select
       data-testid="explore-by-nationality-dropdown"
       onClick={ (e) => handleNacionality(e.target.value) }
+      className="nations-select"
     >
       <option
         value="All"
