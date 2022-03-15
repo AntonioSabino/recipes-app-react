@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AppContext from '../context/AppContext';
 import shareIcon from '../images/shareIcon.svg';
 
 function DoneCards() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [linkCopied, setLinkCopied] = useState(false);
+  const { doneFilter } = useContext(AppContext);
+
+  const handleFilter = (recipe) => recipe.type === doneFilter || doneFilter === 'All';
 
   useEffect(() => {
     const savedDone = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -12,7 +16,7 @@ function DoneCards() {
   }, []);
 
   const handleShare = ({ id, type }) => {
-    if (type === 'drinks') {
+    if (type === 'drink') {
       navigator.clipboard.writeText(`http://localhost:3000/drinks/${id}`);
       setLinkCopied(true);
     } navigator.clipboard.writeText(`http://localhost:3000/foods/${id}`);
@@ -22,7 +26,7 @@ function DoneCards() {
   return (
     <section>
       { linkCopied && <h5>Link copied!</h5> }
-      {doneRecipes.map((recipe, index) => (
+      {doneRecipes.filter(handleFilter).map((recipe, index) => (
         <div key={ recipe.id }>
 
           { recipe.type === 'food'

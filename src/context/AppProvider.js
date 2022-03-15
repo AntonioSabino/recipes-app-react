@@ -15,6 +15,7 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [foodCategory, setFoodCategory] = useState('All');
   const [drinkCategory, setDrinkCategory] = useState('All');
+  const [doneFilter, setDoneFilter] = useState('All');
 
   const context = {
     data,
@@ -34,6 +35,8 @@ const AppProvider = ({ children }) => {
     setFoodCategory,
     drinkCategory,
     setDrinkCategory,
+    doneFilter,
+    setDoneFilter,
   };
 
   useEffect(() => {
