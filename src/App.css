@@ -38,6 +38,11 @@ a {
   flex-direction: column;
 }
 
+.details-container h3 {
+  margin-top: 20px;
+  text-align: start;
+}
+
 img {
   max-width: 100px;
 }
@@ -189,6 +194,10 @@ img {
   width: 100%;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .profile-btn:hover {
   background-color: #4e878c;
 }
@@ -213,6 +222,29 @@ img {
 }
 
 .explore-btn:hover {
+  background-color: #4e878c;
+}
+
+.doneFilters {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 5%;
+  width: 90%;
+}
+
+.doneFilters button {
+  background-color: #b5ffe1;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 8px;
+  min-width: 25vw;
+  padding: 5px;
+  text-align: center;
+  transition: 0.4s;
+}
+
+.doneFilters button:hover {
   background-color: #4e878c;
 }
 
@@ -258,6 +290,7 @@ img {
 }
 
 .ingredients-ul {
+  margin-top: 5px;
   width: 100%;
 }
 
@@ -271,7 +304,7 @@ img {
 
 .instructions {
   background-color: #b5ffe1;
-  margin: 15px auto;
+  margin: 5px auto;
   max-width: 95%;
   padding: 5px;
   text-align: justify;
@@ -287,6 +320,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-top: 5px;
   width: 100%;
 }
 

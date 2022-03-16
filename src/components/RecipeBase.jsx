@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import shareImg from '../images/shareIcon.svg';
 import { saveFavorite } from '../services/functions';
 
 function RecipeBase(props) {
@@ -50,7 +51,6 @@ function RecipeBase(props) {
 
   return (
     <div className="details-container">
-      {linkCopied && <h5>Link copied!</h5>}
       <img
         data-testid="recipe-photo"
         src={ recipe[`str${str}Thumb`] }
@@ -62,13 +62,19 @@ function RecipeBase(props) {
         <button
           type="button"
           onClick={ handleShare }
+          className="pointer"
           data-testid="share-btn"
         >
-          Compartilhar
+          <img
+            src={ shareImg }
+            alt="share icon"
+            className="share-img"
+          />
         </button>
         <button
           type="button"
           onClick={ handleFavorite }
+          className="pointer"
         >
           <img
             src={ isFavorite ? blackHeart : whiteHeart }
@@ -84,6 +90,8 @@ function RecipeBase(props) {
           }
         </p>
       </div>
+      {linkCopied && <h5>Link copied!</h5>}
+      <h3>Ingredients</h3>
       <ul className="ingredients-ul">
         {
           ingredients.map((ingredient, index) => (
@@ -109,6 +117,7 @@ function RecipeBase(props) {
           ))
         }
       </ul>
+      <h3>Instructions</h3>
       <p className="instructions" data-testid="instructions">
         {recipe.strInstructions}
       </p>

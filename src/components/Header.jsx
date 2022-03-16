@@ -25,7 +25,7 @@ function Header(props) {
         <h1 data-testid="page-title">{ name }</h1>
         { hasSearchIcon
           && (
-            <button type="button" onClick={ handleInput }>
+            <button className="pointer" type="button" onClick={ handleInput }>
               <img src={ searchIcon } alt="search-icon" data-testid="search-top-btn" />
             </button>
           )}
