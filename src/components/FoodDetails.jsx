@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchDetails, getFavoriteIds, saveFavorite } from '../services/functions';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import shareImg from '../images/shareIcon.svg';
 import StartRecipe from './StartRecipe';
 import FoodVideo from './FoodVideo';
 import Recommendation from './Recommendation';
@@ -67,13 +68,19 @@ const FoodDetails = ({ match }) => {
           <button
             type="button"
             onClick={ handleShare }
+            className="pointer"
             data-testid="share-btn"
           >
-            Compartilhar
+            <img
+              src={ shareImg }
+              alt="share icon"
+              className="share-img"
+            />
           </button>
           <button
             type="button"
             onClick={ handleFavorite }
+            className="pointer"
           >
             <img
               src={ isFavorite ? blackHeart : whiteHeart }

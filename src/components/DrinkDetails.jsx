@@ -6,6 +6,7 @@ import StartRecipe from './StartRecipe';
 import Recommendation from './Recommendation';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import shareImg from '../images/shareIcon.svg';
 import IngredientsMap from './IngredientsMaps';
 
 const DrinkDetails = ({ match }) => {
@@ -62,12 +63,22 @@ const DrinkDetails = ({ match }) => {
         />
         <div className="details-info">
           <h4 data-testid="recipe-title">{drink[0].strDrink}</h4>
-          <button onClick={ handleShare } type="button" data-testid="share-btn">
-            Compartilhar
+          <button
+            onClick={ handleShare }
+            type="button"
+            className="pointer"
+            data-testid="share-btn"
+          >
+            <img
+              src={ shareImg }
+              alt="share icon"
+              className="share-img"
+            />
           </button>
           <button
             type="button"
             onClick={ handleFavorite }
+            className="pointer"
           >
             <img
               src={ isFavorite ? blackHeart : whiteHeart }
@@ -77,6 +88,7 @@ const DrinkDetails = ({ match }) => {
           </button>
           <p data-testid="recipe-category">{drink[0].strAlcoholic}</p>
         </div>
+        {linkCopied && <h5>Link copied!</h5>}
         <IngredientsMap
           ingredients={ ingredients }
           measures={ measures }
