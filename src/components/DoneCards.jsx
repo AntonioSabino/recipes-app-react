@@ -27,7 +27,7 @@ function DoneCards() {
     <section>
       { linkCopied && <h5>Link copied!</h5> }
       {doneRecipes.filter(handleFilter).map((recipe, index) => (
-        <div key={ recipe.id }>
+        <div className="doneCard" key={ recipe.id }>
 
           { recipe.type === 'food'
             ? (

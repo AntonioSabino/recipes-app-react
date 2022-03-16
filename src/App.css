@@ -221,6 +221,22 @@ img {
   width: 100%;
 }
 
+.doneCard {
+  border-radius: 3px;
+  box-shadow: 2px 2px #b5ffe1;
+  cursor: pointer;
+  margin: 5px 10vw;
+  text-align: center;
+  transition: 0.4s;
+  width: 80vw;
+}
+
+.doneCard button {
+  background-color: transparent;
+  border: none;
+  margin: 5px;
+}
+
 .explore-btn:hover {
   background-color: #4e878c;
 }
@@ -253,14 +269,6 @@ img {
   padding: 5px;
   text-align: start;
   transition: 0.4s;
-}
-
-.doneFilters button:hover {
-  background-color: #4e878c;
-}
-
-.categories-container button:hover {
-  background-color: #4e878c;
 }
 
 .nations-select {
@@ -340,4 +348,12 @@ img {
 
 .search-bar .search-radios label {
   cursor: pointer;
+}
+
+.doneFilters button:hover {
+  background-color: #4e878c;
+}
+
+.categories-container button:hover {
+  background-color: #4e878c;
 }
