@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchDetails, getFavoriteIds } from '../services/functions';
+import { fetchDetails, getFavoriteIds, saveFavorite } from '../services/functions';
+import whiteHeart from '../images/whiteHeartIcon.svg';
+import blackHeart from '../images/blackHeartIcon.svg';
 import StartRecipe from './StartRecipe';
-import RecipeBase from './RecipeBase';
 import FoodVideo from './FoodVideo';
 import Recommendation from './Recommendation';
+import IngredientsMap from './IngredientsMaps';
 
 const FoodDetails = ({ match }) => {
   const { path } = match;
@@ -27,6 +29,20 @@ const FoodDetails = ({ match }) => {
     setLinkCopied(true);
   };
 
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    const info = {
+      category: meal[0].strCategory,
+      nationality: meal[0].strArea,
+      id: mealId,
+      type: 'food',
+      alcoholicOrNot: '',
+      name: meal[0].strMeal,
+      image: meal[0].strMealThumb,
+    };
+    saveFavorite(info);
+  };
+
   useEffect(() => {
     fetchDetails(mealId, 'meal').then((data) => {
       setMeal(data);
@@ -39,17 +55,44 @@ const FoodDetails = ({ match }) => {
   return (
     loading ? <h2>Carregando...</h2> : (
       <div className="details-container">
-        <RecipeBase
-          path={ path }
-          linkCopied={ linkCopied }
+        {linkCopied && <h5>Link copied!</h5>}
+        <img
+          data-testid="recipe-photo"
+          src={ meal[0].strMealThumb }
+          alt={ meal[0].strMeal }
+          className="detail-img"
+        />
+        <div className="details-info">
+          <h4 data-testid="recipe-title">{meal[0].strMeal}</h4>
+          <button
+            type="button"
+            onClick={ handleShare }
+            data-testid="share-btn"
+          >
+            Compartilhar
+          </button>
+          <button
+            type="button"
+            onClick={ handleFavorite }
+          >
+            <img
+              src={ isFavorite ? blackHeart : whiteHeart }
+              alt="heart"
+              data-testid="favorite-btn"
+            />
+          </button>
+          <p data-testid="recipe-category">{meal[0].strCategory}</p>
+        </div>
+        <IngredientsMap
           ingredients={ ingredients }
           measures={ measures }
-          handleShare={ handleShare }
-          meal={ meal[0] }
-          mealId={ mealId }
-          isFavorite={ isFavorite }
-          setIsFavorite={ setIsFavorite }
+          recipe={ meal[0] }
+          recipeId={ mealId }
+          path={ path }
         />
+        <p className="instructions" data-testid="instructions">
+          {meal[0].strInstructions}
+        </p>
         <FoodVideo meal={ meal[0] } />
         <Recommendation path={ path } />
         <Link to={ `/foods/${mealId}/in-progress` }>

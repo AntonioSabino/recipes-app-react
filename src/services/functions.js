@@ -188,3 +188,19 @@ export const getEmbed = (strYoutube) => {
   const embedUrl = initialUrl.concat(finalUrl);
   return embedUrl;
 };
+
+export const saveChecked = (data, recipeId, path) => {
+  const storage = path.includes('/food') ? 'meals' : 'cocktails';
+  const prevData = JSON.parse(localStorage.getItem(storage));
+  console.log(prevData);
+  const checkedArr = prevData || [];
+  const newcheckedArr = [...checkedArr.filter(({ id }) => id !== recipeId), data];
+  localStorage.setItem(storage, JSON.stringify(newcheckedArr));
+};
+
+export const getCheckedIngredients = (recipeId, path) => {
+  const storage = path.includes('/food') ? 'meals' : 'cocktails';
+  const data = JSON.parse(localStorage.getItem(storage));
+  const checkedArr = data || [];
+  return checkedArr.filter(({ id }) => id === recipeId);
+};
