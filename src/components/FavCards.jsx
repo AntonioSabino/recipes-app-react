@@ -17,6 +17,11 @@ function FavCards() {
     setFavRecipes(data || []);
   }, []);
 
+  const handleFavorite = ({ id }) => {
+    setFavRecipes((prevFav) => prevFav.filter((recipe) => recipe.id !== id));
+    removeFavorite(id);
+  };
+
   const handleShare = ({ id, type }) => {
     if (type === 'drink') {
       navigator.clipboard.writeText(`http://localhost:3000/drinks/${id}`);
@@ -64,17 +69,16 @@ function FavCards() {
               data-testid={ `${index}-horizontal-share-btn` }
             />
           </button>
-          {/* <button
+          <button
             type="button"
-            onClick={ handleFavorite }
-          > */}
-          <img
-            // src={ recipe.isFavorite ? blackHeart : whiteHeart }
-            src={ blackHeart }
-            alt="heart"
-            data-testid={ `${index}-horizontal-favorite-btn` }
-          />
-          {/* </button> */}
+            onClick={ () => handleFavorite(recipe) }
+          >
+            <img
+              src={ blackHeart }
+              alt="heart"
+              data-testid={ `${index}-horizontal-favorite-btn` }
+            />
+          </button>
           { recipe.type === 'food'
             ? (
               <p data-testid={ `${index}-horizontal-top-text` }>
