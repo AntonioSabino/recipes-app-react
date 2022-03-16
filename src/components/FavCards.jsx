@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-// import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import AppContext from '../context/AppContext';
+import { removeFavorite } from '../services/functions';
 
 function FavCards() {
   const [favRecipes, setFavRecipes] = useState([]);
