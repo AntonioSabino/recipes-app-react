@@ -182,6 +182,12 @@ export const saveFavorite = (data) => {
   localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
 };
 
+export const removeFavorite = (id) => {
+  const prevData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const newFavorites = prevData.filter((recipe) => recipe.id !== id);
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+};
+
 export const getEmbed = (strYoutube) => {
   const finalUrl = strYoutube.split('v=')[1];
   const initialUrl = 'https://www.youtube.com/embed/';

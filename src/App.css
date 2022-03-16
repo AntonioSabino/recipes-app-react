@@ -8,8 +8,9 @@
 
 .footer {
   align-items: center;
-  background-color: #c4c4c4;
+  background-color: #b5ffe1;
   bottom: 0;
+  color: black;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -35,6 +36,11 @@ a {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.details-container h3 {
+  margin-top: 20px;
+  text-align: start;
 }
 
 img {
@@ -78,9 +84,9 @@ img {
 }
 
 .bottom-btn {
-  background-color: #6ce34f;
+  background-color: #4e878c;
   border: none;
-  color: black;
+  color: white;
   cursor: pointer;
   font-size: 20px;
   margin: 10vh auto 0;
@@ -91,8 +97,8 @@ img {
 
 .bottom-btn:disabled {
   background-color: transparent;
-  border: 2px solid #6ce34f;
-  color: #6ce34f;
+  border: 2px solid #4e878c;
+  color: #4e878c;
 }
 
 .bottom-btn:hover {
@@ -101,7 +107,8 @@ img {
 
 .header {
   align-items: center;
-  background-color: #c4c4c4;
+  background-color: #b5ffe1;
+  color: black;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -118,6 +125,7 @@ img {
 }
 
 .header h1 {
+  color: black;
   flex: 1;
   text-align: center;
 }
@@ -174,10 +182,10 @@ img {
 }
 
 .profile-btn {
-  background-color: #c4c4c4;
+  background-color: #b5ffe1;
   border: none;
   border-radius: 6px;
-  box-shadow: 2px 2px #c4c4c4;
+  box-shadow: 2px 2px #b5ffe1;
   cursor: pointer;
   font-size: 30px;
   padding: 20px 5%;
@@ -186,8 +194,12 @@ img {
   width: 100%;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .profile-btn:hover {
-  background-color: #6ce34f;
+  background-color: #4e878c;
 }
 
 .ingredient-btn {
@@ -196,12 +208,12 @@ img {
 }
 
 .ingredient-btn:hover {
-  background-color: #6ce34f;
+  background-color: #4e878c;
 }
 
 .explore-btn {
   border-radius: 6px;
-  box-shadow: 2px 2px #c4c4c4;
+  box-shadow: 2px 2px #b5ffe1;
   cursor: pointer;
   font-size: 30px;
   padding: 20px 5%;
@@ -209,12 +221,47 @@ img {
   width: 100%;
 }
 
+.doneCard {
+  border-radius: 3px;
+  box-shadow: 2px 2px #b5ffe1;
+  cursor: pointer;
+  margin: 5px 10vw;
+  text-align: center;
+  transition: 0.4s;
+  width: 80vw;
+}
+
+.doneCard button {
+  background-color: transparent;
+  border: none;
+  margin: 5px;
+}
+
 .explore-btn:hover {
-  background-color: #6ce34f;
+  background-color: #4e878c;
+}
+
+.doneFilters {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 5%;
+  width: 90%;
+}
+
+.doneFilters button {
+  background-color: #b5ffe1;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 8px;
+  min-width: 25vw;
+  padding: 5px;
+  text-align: center;
+  transition: 0.4s;
 }
 
 .categories-container button {
-  background-color: #c4c4c4;
+  background-color: #b5ffe1;
   border: none;
   cursor: pointer;
   margin: 8px;
@@ -222,10 +269,6 @@ img {
   padding: 5px;
   text-align: start;
   transition: 0.4s;
-}
-
-.categories-container button:hover {
-  background-color: #6ce34f;
 }
 
 .nations-select {
@@ -236,7 +279,8 @@ img {
 }
 
 .recipe-card {
-  box-shadow: 2px 2px #c4c4c4;
+  border-radius: 3px;
+  box-shadow: 2px 2px #b5ffe1;
   cursor: pointer;
   margin: 5px;
   text-align: center;
@@ -245,15 +289,21 @@ img {
 }
 
 .recipe-card:hover {
-  background-color: #6ce34f;
+  background-color: #4e878c;
+}
+
+.recipe-card img {
+  max-width: max-content;
+  width: 35vw;
 }
 
 .ingredients-ul {
+  margin-top: 5px;
   width: 100%;
 }
 
 .ingredients-ul li {
-  background-color: #e5e5e5;
+  background-color: #b5ffe1;
   list-style: none;
   margin: 0 auto;
   max-width: 95%;
@@ -261,8 +311,8 @@ img {
 }
 
 .instructions {
-  background-color: #e5e5e5;
-  margin: 15px auto;
+  background-color: #b5ffe1;
+  margin: 5px auto;
   max-width: 95%;
   padding: 5px;
   text-align: justify;
@@ -278,11 +328,12 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-top: 5px;
   width: 100%;
 }
 
 .search-bar {
-  box-shadow: 2px 2px #c4c4c4;
+  box-shadow: 2px 2px #b5ffe1;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -297,4 +348,12 @@ img {
 
 .search-bar .search-radios label {
   cursor: pointer;
+}
+
+.doneFilters button:hover {
+  background-color: #4e878c;
+}
+
+.categories-container button:hover {
+  background-color: #4e878c;
 }

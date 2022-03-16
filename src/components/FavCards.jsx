@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-// import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import AppContext from '../context/AppContext';
+import { removeFavorite } from '../services/functions';
 
 function FavCards() {
   const [favRecipes, setFavRecipes] = useState([]);
@@ -17,6 +17,11 @@ function FavCards() {
     setFavRecipes(data || []);
   }, []);
 
+  const handleFavorite = ({ id }) => {
+    setFavRecipes((prevFav) => prevFav.filter((recipe) => recipe.id !== id));
+    removeFavorite(id);
+  };
+
   const handleShare = ({ id, type }) => {
     if (type === 'drink') {
       navigator.clipboard.writeText(`http://localhost:3000/drinks/${id}`);
@@ -29,7 +34,7 @@ function FavCards() {
     <section>
       { linkCopied && <h5>Link copied!</h5> }
       {favRecipes.filter(handleFilter).map((recipe, index) => (
-        <div key={ recipe.id }>
+        <div className="doneCard" key={ recipe.id }>
 
           { recipe.type === 'food'
             ? (
@@ -64,17 +69,16 @@ function FavCards() {
               data-testid={ `${index}-horizontal-share-btn` }
             />
           </button>
-          {/* <button
+          <button
             type="button"
-            onClick={ handleFavorite }
-          > */}
-          <img
-            // src={ recipe.isFavorite ? blackHeart : whiteHeart }
-            src={ blackHeart }
-            alt="heart"
-            data-testid={ `${index}-horizontal-favorite-btn` }
-          />
-          {/* </button> */}
+            onClick={ () => handleFavorite(recipe) }
+          >
+            <img
+              src={ blackHeart }
+              alt="heart"
+              data-testid={ `${index}-horizontal-favorite-btn` }
+            />
+          </button>
           { recipe.type === 'food'
             ? (
               <p data-testid={ `${index}-horizontal-top-text` }>
