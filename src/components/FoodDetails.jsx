@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { fetchDetails, getFavoriteIds, saveFavorite } from '../services/functions';
@@ -9,8 +9,10 @@ import StartRecipe from './StartRecipe';
 import FoodVideo from './FoodVideo';
 import Recommendation from './Recommendation';
 import IngredientsMap from './IngredientsMaps';
+import AppContext from '../context/AppContext';
 
 const FoodDetails = ({ match }) => {
+  const { finishButton } = useContext(AppContext);
   const { path } = match;
   const mealId = match.params.id;
   const [linkCopied, setLinkCopied] = useState(false);
@@ -21,7 +23,8 @@ const FoodDetails = ({ match }) => {
   const [measures, setMeasures] = useState({});
 
   const getIngredients = (thisMeal) => {
-    setIngredients(Object.keys(thisMeal).filter((item) => item.includes('Ingredient')));
+    setIngredients(Object.entries(thisMeal)
+      .filter((item) => item[0].includes('Ingredient') && item[1]));
     setMeasures(Object.keys(thisMeal).filter((item) => item.includes('Measure')));
   };
 
@@ -102,9 +105,22 @@ const FoodDetails = ({ match }) => {
         </p>
         <FoodVideo meal={ meal[0] } />
         <Recommendation path={ path } />
-        <Link to={ `/foods/${mealId}/in-progress` }>
-          <StartRecipe id={ mealId } />
-        </Link>
+        {path.includes('/in-progress') ? (
+          <Link to="/done-recipes">
+            <button
+              type="button"
+              data-testid="finish-recipe-btn"
+              className="start-recipe bottom-btn"
+              disabled={ !finishButton }
+            >
+              Finish Recipe
+            </button>
+          </Link>
+        ) : (
+          <Link to={ `/foods/${mealId}/in-progress` }>
+            <StartRecipe id={ mealId } />
+          </Link>
+        )}
       </div>
     )
   );

@@ -198,7 +198,6 @@ export const getEmbed = (strYoutube) => {
 export const saveChecked = (data, recipeId, path) => {
   const storage = path.includes('/food') ? 'meals' : 'cocktails';
   const prevData = JSON.parse(localStorage.getItem(storage));
-  console.log(prevData);
   const checkedArr = prevData || [];
   const newcheckedArr = [...checkedArr.filter(({ id }) => id !== recipeId), data];
   localStorage.setItem(storage, JSON.stringify(newcheckedArr));
