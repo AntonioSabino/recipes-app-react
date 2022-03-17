@@ -9,8 +9,6 @@ function IngredientsMap({ ingredients, measures, recipe, path, recipeId }) {
     new Array(ingredients.length).fill(false),
   );
 
-  console.log(ingredients);
-
   const handleChange = (position) => {
     const updatedChecked = isCheked.map(
       (item, index) => (index === position ? !item : item),
