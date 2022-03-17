@@ -1,4 +1,4 @@
-import { findAllByText, screen } from '@testing-library/react';
+import { findAllByRole, findAllByText, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
@@ -31,6 +31,18 @@ describe('Teste a página Receita em Progresso', () => {
     const finishBtn = await findAllByText('Finalizar');
     expect(finishBtn[0]).toBeInTheDocument();
     history.push('/foods/53060');
+    const finishRecipeBtn = await findAllByText('Finalizar');
+    expect(finishRecipeBtn[0]).toBeInTheDocument();
+  });
+  test('Teste os checkboxes', async () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/drinks/15346/in-progress');
+    const checkboxes = await findAllByRole('checkbox');
+    for (let i = 0; i < checkboxes.length; i += 1) {
+      act(() => {
+        userEvent.click(checkboxes[i]);
+      });
+    }
     const finishRecipeBtn = await findAllByText('Finalizar');
     expect(finishRecipeBtn[0]).toBeInTheDocument();
   });

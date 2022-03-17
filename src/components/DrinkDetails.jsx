@@ -7,7 +7,7 @@ import Recommendation from './Recommendation';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import shareImg from '../images/shareIcon.svg';
-import IngredientsMap from './IngredientsMaps';
+import IngredientsMap from './IngredientsMap';
 
 const DrinkDetails = ({ match }) => {
   const { path } = match;

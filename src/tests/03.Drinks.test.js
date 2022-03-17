@@ -72,7 +72,7 @@ describe('Teste a página de receitas (Foods)', () => {
     act(() => {
       userEvent.click(screen.getByTestId('Cocktail-category-filter'));
     });
-    const recipeImages = await screen.findAllByAltText('recipe');
-    expect(recipeImages).toHaveLength(NUMB_OF_RECIPES);
+    const recipeName = await screen.findAllByText('Belmont');
+    expect(recipeName).toBeInTheDocument();
   });
 });

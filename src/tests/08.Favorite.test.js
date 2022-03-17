@@ -33,11 +33,23 @@ describe('Teste a página de Receitas Favoritas', () => {
     history.push(PATH.favorite);
     const name = await screen.findAllByRole('img', { name: MARGARITA[0].name });
     expect(name[0]).toBeInTheDocument();
-    const shareIcon = screen.queryAllByAltText('share icon');
+    const shareIcon = screen.getAllByAltText('share icon');
     act(() => {
       userEvent.click(shareIcon[0]);
     });
     const copiedText = await screen.findAllByText(/copied/i);
     expect(copiedText[0]).toBeInTheDocument();
+  });
+  test('Teste o botão de favoritar', async () => {
+    const { history } = renderWithRouter(<App />);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(MARGARITA));
+    history.push(PATH.favorite);
+    const name = await screen.findAllByRole('img', { name: MARGARITA[0].name });
+    expect(name[0]).toBeInTheDocument();
+    const heartIcon = screen.getAllByAltText('heart');
+    act(() => {
+      userEvent.click(heartIcon[0]);
+    });
+    expect(heartIcon[0]).not.toBeInTheDocument();
   });
 });

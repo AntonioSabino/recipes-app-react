@@ -19,6 +19,7 @@ import {
   filterByNacionality,
   filterByCategories,
   fetchCategories,
+  saveChecked,
 } from '../services/functions';
 import { NUMB_OF_RECIPES, NUMB_OF_TYPES } from './mocks';
 
@@ -164,5 +165,11 @@ describe('Testes do arquivo functions - Parte 3 de 3', () => {
     fetchCategories().then((data) => {
       expect(data).toHaveLength(0);
     });
+  });
+  test('Teste a função saveChecked', () => {
+    const id = '275x';
+    saveChecked({ id }, id, '/food/275x');
+    const data = JSON.parse(localStorage.getItem(storage));
+    expect(data).toEqual({ id });
   });
 });

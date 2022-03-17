@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
@@ -26,5 +27,10 @@ describe('Teste a página Explore Foods', () => {
     EXPLORE_FOODS_LINKS.forEach((linkName, index) => {
       expect(links[index + 1]).toHaveTextContent(linkName);
     });
+    const surprise = screen.getByTestId('explore-surprise');
+    act(() => {
+      userEvent.click(surprise);
+    });
+    expect(surprise).toBeInTheDocument();
   });
 });
