@@ -49,6 +49,7 @@ function IngredientsMap({ ingredients, measures, recipe, path, recipeId }) {
                     <input
                       type="checkbox"
                       id={ `ingrediente-${index}` }
+                      data-testid="ingredient"
                       defaultChecked={ isCheked[index] }
                       onChange={ () => handleChange(index) }
                     />

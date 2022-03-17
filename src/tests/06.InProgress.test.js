@@ -37,7 +37,7 @@ describe('Teste a página Receita em Progresso', () => {
   test('Teste os checkboxes', async () => {
     const { history } = renderWithRouter(<App />);
     history.push('/drinks/15346/in-progress');
-    const checkboxes = await screen.findAllByTestId('2-ingredient-step');
+    const checkboxes = await screen.findAllByTestId('ingredient');
     act(() => {
       userEvent.click(checkboxes[0]);
     });
