@@ -41,6 +41,9 @@ describe('Teste a página de Receitas Feitas', () => {
     const foodBtn = screen.getByTestId(dataTestIds[1]);
     expect(foodBtn).toHaveTextContent(DONE_BTNS[1]);
     const drinksBtn = screen.getByTestId(dataTestIds[2]);
+    act(() => {
+      userEvent.click(drinksBtn);
+    });
     expect(drinksBtn).toHaveTextContent(DONE_BTNS[2]);
   });
   test('Teste o botão de compartilhar', async () => {

@@ -19,6 +19,7 @@ import {
   filterByNacionality,
   filterByCategories,
   fetchCategories,
+  saveChecked,
 } from '../services/functions';
 import { NUMB_OF_RECIPES, NUMB_OF_TYPES } from './mocks';
 
@@ -115,12 +116,12 @@ describe('Testes das demais funções da pasta services', () => {
     });
   });
   test('Teste a função filterByNacionality', () => {
-    filterByNacionality('All').then(() => {
-      expect(fetchMeals).toHaveBeenCalled();
-    });
     filterByNacionality('Italian').then((data) => {
       expect(defaultFetch).toHaveBeenCalled();
       expect(data).toHaveLength(NUMB_OF_RECIPES);
+    });
+    filterByNacionality('All').then(() => {
+      expect(fetchMeals).toHaveBeenCalled();
     });
   });
 });
@@ -162,6 +163,17 @@ describe('Testes do arquivo functions - Parte 3 de 3', () => {
   });
   test('Teste o erro da função fetchCategories', () => {
     fetchCategories().then((data) => {
+      expect(data).toHaveLength(0);
+    });
+  });
+  test('Teste a função saveChecked', () => {
+    const id = '275x';
+    saveChecked({ id }, id, '/food/275x');
+    const data = JSON.parse(localStorage.getItem(storage));
+    expect(data).toEqual({ id });
+  });
+  test('Teste o erro da função fetchDrinks', () => {
+    fetchDrinks('Test1', 'Test').then((data) => {
       expect(data).toHaveLength(0);
     });
   });

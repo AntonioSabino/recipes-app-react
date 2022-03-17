@@ -21,6 +21,7 @@ export const fetchDrinks = async (input, type) => {
     'First Letter': `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`,
     Name: `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}`,
     Ingredients: `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${input}`,
+    Test: 'urlerrada',
   };
   try {
     const response = await fetch(endpoint[type]);

@@ -8,7 +8,7 @@ import shareImg from '../images/shareIcon.svg';
 import StartRecipe from './StartRecipe';
 import FoodVideo from './FoodVideo';
 import Recommendation from './Recommendation';
-import IngredientsMap from './IngredientsMaps';
+import IngredientsMap from './IngredientsMap';
 import AppContext from '../context/AppContext';
 
 const FoodDetails = ({ match }) => {

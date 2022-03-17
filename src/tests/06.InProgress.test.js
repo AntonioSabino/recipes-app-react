@@ -1,4 +1,4 @@
-import { findAllByText, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
@@ -28,10 +28,20 @@ describe('Teste a página Receita em Progresso', () => {
     localStorage.setItem('inProgressRecipes', JSON.stringify(PROGRESS_MOCK));
     const { history } = renderWithRouter(<App />);
     history.push('/drinks/17222');
-    const finishBtn = await findAllByText('Finalizar');
+    const finishBtn = await screen.findAllByText('Finalizar');
     expect(finishBtn[0]).toBeInTheDocument();
     history.push('/foods/53060');
-    const finishRecipeBtn = await findAllByText('Finalizar');
+    const finishRecipeBtn = await screen.findAllByText('Finalizar');
     expect(finishRecipeBtn[0]).toBeInTheDocument();
+  });
+  test('Teste os checkboxes', async () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/drinks/15346/in-progress');
+    const checkboxes = await screen.findAllByTestId('ingredient');
+    act(() => {
+      userEvent.click(checkboxes[0]);
+    });
+    // const finishRecipeBtn = await screen.findAllByText('Finalizar');
+    expect(checkboxes[0]).toBeInTheDocument();
   });
 });

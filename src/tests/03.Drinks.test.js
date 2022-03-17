@@ -5,6 +5,9 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 import { NUMB_OF_RECIPES, RADIOS } from './mocks';
 
+const execSearch = 'exec-search-btn';
+const searchInputButton = 'search-input';
+
 describe('Teste a página de receitas (Foods)', () => {
   test('Teste se há 12 imagens de receitas', async () => {
     const { history } = renderWithRouter(<App />);
@@ -27,9 +30,9 @@ describe('Teste a página de receitas (Foods)', () => {
     history.push('/drinks');
     const searchIcon = screen.getAllByRole('button');
     userEvent.click(searchIcon[0]);
-    const execBtn = screen.getByTestId('exec-search-btn');
+    const execBtn = screen.getByTestId(execSearch);
     expect(execBtn).toHaveTextContent('Search');
-    const searchInput = screen.getByTestId('search-input');
+    const searchInput = screen.getByTestId(searchInputButton);
     expect(searchInput).toBeInTheDocument();
     userEvent.type(searchInput, 'shake');
     const fstRadio = screen.getByTestId(RADIO[0]);
@@ -46,16 +49,37 @@ describe('Teste a página de receitas (Foods)', () => {
     act(() => {
       userEvent.click(searchIcon[0]);
     });
-    const searchInput = screen.getByTestId('search-input');
+    const searchInput = screen.getByTestId(searchInputButton);
     act(() => {
       userEvent.type(searchInput, 'Gin');
     });
     const radioInput = screen.getByTestId('ingredient-search-radio');
     act(() => {
       userEvent.click(radioInput);
-      userEvent.click(screen.getByTestId('exec-search-btn'));
+      userEvent.click(screen.getByTestId(execSearch));
     });
     expect(searchInput).toBeInTheDocument();
+  });
+  test('Teste a barra de busca', async () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/drinks');
+    const searchIcon = screen.getAllByRole('button', { name: 'search-icon' });
+    act(() => {
+      userEvent.click(searchIcon[0]);
+    });
+    const searchInput = screen.getByTestId(searchInputButton);
+    act(() => {
+      userEvent.type(searchInput, 'Gin');
+    });
+    const radioInput = screen.getByTestId('ingredient-search-radio');
+    act(() => {
+      userEvent.click(radioInput);
+    });
+    act(() => {
+      userEvent.click(screen.getByTestId(execSearch));
+    });
+    const specialText = await findAllByText('Special');
+    expect(specialText[0]).toBeInTheDocument();
   });
   test('Teste as categorias', async () => {
     const { history } = renderWithRouter(<App />);
@@ -72,7 +96,7 @@ describe('Teste a página de receitas (Foods)', () => {
     act(() => {
       userEvent.click(screen.getByTestId('Cocktail-category-filter'));
     });
-    const recipeImages = await screen.findAllByAltText('recipe');
-    expect(recipeImages).toHaveLength(NUMB_OF_RECIPES);
+    const recipeName = await screen.findAllByText('Belmont');
+    expect(recipeName).toBeInTheDocument();
   });
 });
