@@ -20,7 +20,8 @@ const DrinkDetails = ({ match }) => {
   const [measures, setMeasures] = useState({});
 
   const getIngredients = (thisDrink) => {
-    setIngredients(Object.keys(thisDrink).filter((item) => item.includes('Ingredient')));
+    setIngredients(Object.entries(thisDrink)
+      .filter((item) => item[0].includes('Ingredient') && item[1]));
     setMeasures(Object.keys(thisDrink).filter((item) => item.includes('Measure')));
   };
 
