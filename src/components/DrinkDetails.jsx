@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { fetchDetails, getFavoriteIds, saveFavorite } from '../services/functions';
@@ -8,8 +8,10 @@ import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
 import shareImg from '../images/shareIcon.svg';
 import IngredientsMap from './IngredientsMaps';
+import AppContext from '../context/AppContext';
 
 const DrinkDetails = ({ match }) => {
+  const { finishButton } = useContext(AppContext);
   const { path } = match;
   const drinkId = match.params.id;
   const [linkCopied, setLinkCopied] = useState(false);
@@ -101,9 +103,22 @@ const DrinkDetails = ({ match }) => {
           {drink[0].strInstructions}
         </p>
         <Recommendation path={ path } />
-        <Link to={ `/drinks/${drinkId}/in-progress` }>
-          <StartRecipe id={ drinkId } />
-        </Link>
+        {path.includes('/in-progress') ? (
+          <Link to="/done-recipes">
+            <button
+              type="button"
+              data-testid="finish-recipe-btn"
+              className="start-recipe bottom-btn"
+              disabled={ !finishButton }
+            >
+              Finish Recipe
+            </button>
+          </Link>
+        ) : (
+          <Link to={ `/drinks/${drinkId}/in-progress` }>
+            <StartRecipe id={ drinkId } />
+          </Link>
+        )}
       </div>
     )
   );

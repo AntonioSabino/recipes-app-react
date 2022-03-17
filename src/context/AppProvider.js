@@ -16,6 +16,7 @@ const AppProvider = ({ children }) => {
   const [foodCategory, setFoodCategory] = useState('All');
   const [drinkCategory, setDrinkCategory] = useState('All');
   const [doneFilter, setDoneFilter] = useState('All');
+  const [finishButton, setFinishButton] = useState(false);
 
   const context = {
     data,
@@ -37,6 +38,8 @@ const AppProvider = ({ children }) => {
     setDrinkCategory,
     doneFilter,
     setDoneFilter,
+    finishButton,
+    setFinishButton,
   };
 
   useEffect(() => {

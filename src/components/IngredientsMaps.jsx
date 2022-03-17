@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getCheckedIngredients, saveChecked } from '../services/functions';
+import AppContext from '../context/AppContext';
 
 function IngredientsMap({ ingredients, measures, recipe, path, recipeId }) {
+  const { setFinishButton } = useContext(AppContext);
   const [isCheked, setIsCheked] = useState(
     new Array(ingredients.length).fill(false),
   );
 
-  console.log(ingredients.length);
+  console.log(ingredients);
 
   const handleChange = (position) => {
     const updatedChecked = isCheked.map(
@@ -17,6 +19,8 @@ function IngredientsMap({ ingredients, measures, recipe, path, recipeId }) {
       id: recipeId,
       checked: updatedChecked,
     };
+    setFinishButton(updatedChecked.every((checked) => checked === true));
+
     setIsCheked(updatedChecked);
     saveChecked(storageData, recipeId, path);
   };
@@ -24,16 +28,16 @@ function IngredientsMap({ ingredients, measures, recipe, path, recipeId }) {
   useEffect(() => {
     const newChecked = getCheckedIngredients(recipeId, path);
     if (newChecked.length) {
-      console.log(newChecked[0].checked);
+      setFinishButton(newChecked[0].checked.every((checked) => checked === true));
       setIsCheked(newChecked[0].checked);
     }
-  }, [path, recipeId, setIsCheked]);
+  }, [path, recipeId, setFinishButton, setIsCheked]);
 
   return (
     <ul className="ingredients-ul">
       {
         ingredients.map((ingredient, index) => (
-          recipe[ingredient] && (
+          ingredient && (
             <li
               key={ index }
               data-testid={
@@ -51,14 +55,15 @@ function IngredientsMap({ ingredients, measures, recipe, path, recipeId }) {
                       defaultChecked={ isCheked[index] }
                       onChange={ () => handleChange(index) }
                     />
-                    {` - ${recipe[measures[index]]} - ${recipe[ingredient]}`}
+                    {` - ${recipe[measures[index]]} - ${ingredient[1]}`}
                   </label>
                 )
-                  : `${recipe[measures[index]]} - ${recipe[ingredient]}`
+                  : `${recipe[measures[index]]} - ${ingredient[1]}`
               }
             </li>)
         ))
       }
+
     </ul>
   );
 }

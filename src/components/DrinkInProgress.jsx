@@ -6,9 +6,6 @@ function DrinkInProgress({ match }) {
   return (
     <div>
       <DrinkDetails match={ match } />
-      <button type="button" data-testid="finish-recipe-btn">
-        Finalizar
-      </button>
     </div>
   );
 }
