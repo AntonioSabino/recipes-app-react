@@ -20,7 +20,6 @@ function IngredientsMap({ ingredients, measures, recipe, path, recipeId }) {
       checked: updatedChecked,
     };
     setFinishButton(updatedChecked.every((checked) => checked === true));
-
     setIsCheked(updatedChecked);
     saveChecked(storageData, recipeId, path);
   };
