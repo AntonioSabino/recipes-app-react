@@ -172,4 +172,9 @@ describe('Testes do arquivo functions - Parte 3 de 3', () => {
     const data = JSON.parse(localStorage.getItem(storage));
     expect(data).toEqual({ id });
   });
+  test('Teste o erro da função fetchDrinks', () => {
+    fetchDrinks('Test1', 'Test').then((data) => {
+      expect(data).toHaveLength(0);
+    });
+  });
 });
