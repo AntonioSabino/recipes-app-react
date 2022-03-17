@@ -116,12 +116,12 @@ describe('Testes das demais funções da pasta services', () => {
     });
   });
   test('Teste a função filterByNacionality', () => {
-    filterByNacionality('All').then(() => {
-      expect(fetchMeals).toHaveBeenCalled();
-    });
     filterByNacionality('Italian').then((data) => {
       expect(defaultFetch).toHaveBeenCalled();
       expect(data).toHaveLength(NUMB_OF_RECIPES);
+    });
+    filterByNacionality('All').then(() => {
+      expect(fetchMeals).toHaveBeenCalled();
     });
   });
 });
