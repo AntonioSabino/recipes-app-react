@@ -1,4 +1,7 @@
 # Repositório do projeto de Receitas!
+
+Assista a apresentação do projeto clicando [aqui](https://www.youtube.com/watch?v=T70t3mDiwvg)
+
 ---
 
 # Habilidades
